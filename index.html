@@ -3,14 +3,1830 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>課程簽到系統</title>
+
+  <title>臺北市體育運動教練職業工會｜課程簽到系統</title>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        sans-serif;
+      background: #f5f6f8;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0 0 8px;
+    }
+
+    .header p {
+      color: #777;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 16px;
+      margin-top: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #06c755;
+      color: white;
+    }
+
+    button.secondary {
+      background: #555;
+    }
+
+    button.danger {
+      background: #d9534f;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .status {
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: #eef7ff;
+    }
+
+    .success {
+      background: #e9f9ef;
+      color: #176b35;
+    }
+
+    .error {
+      background: #fff0f0;
+      color: #a33;
+    }
+
+    .course {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+
+    .course-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .course-info {
+      color: #666;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      background: #eee;
+      margin-top: 5px;
+    }
+
+    .badge-open {
+      background: #dff7e7;
+      color: #16813b;
+    }
+
+    .badge-draft {
+      background: #eee;
+      color: #666;
+    }
+
+    .badge-cancelled {
+      background: #ffe1e1;
+      color: #a33;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .menu button {
+      margin-top: 8px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .center {
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>LINE 課程簽到系統</h1>
+<div class="container">
 
-  <p>系統正在建立中。</p>
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <div class="header">
+    <h1>臺北市體育運動教練職業工會</h1>
+    <p>課程簽到系統</p>
+  </div>
+
+
+  <!-- =========================
+       系統狀態
+  ========================== -->
+
+  <div id="statusBox" class="status">
+    系統正在啟動……
+  </div>
+
+
+  <!-- =========================
+       登入
+  ========================== -->
+
+  <div id="loginCard" class="card center hidden">
+
+    <h2>歡迎使用</h2>
+
+    <p>
+      請使用 LINE 登入課程簽到系統
+    </p>
+
+    <button onclick="loginLINE()">
+      使用 LINE 登入
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       綁定學員
+  ========================== -->
+
+  <div id="verifyCard" class="card hidden">
+
+    <h2>第一次使用</h2>
+
+    <p>
+      請輸入您的學員資料進行驗證。
+    </p>
+
+    <label>學員編號</label>
+    <input id="studentId" placeholder="例如：S001">
+
+    <label>姓名</label>
+    <input id="studentName" placeholder="請輸入姓名">
+
+    <label>手機號碼</label>
+    <input id="studentPhone" placeholder="例如：0912345678">
+
+    <button onclick="verifyStudent()">
+      驗證並綁定 LINE
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       主畫面
+  ========================== -->
+
+  <div id="mainCard" class="hidden">
+
+    <div class="card">
+
+      <div class="user-info">
+
+        <img
+          id="userPicture"
+          src=""
+          alt=""
+        >
+
+        <div>
+
+          <strong id="userName">
+            使用者
+          </strong>
+
+          <div
+            id="userRole"
+            class="small"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         學員首頁
+    ========================== -->
+
+    <div
+      id="studentPanel"
+      class="card hidden"
+    >
+
+      <h2>我的課程</h2>
+
+      <button onclick="loadCourses()">
+        重新整理課程
+      </button>
+
+      <div id="coursesList">
+        <div class="loading">
+          載入課程中……
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         老師 / 管理員
+    ========================== -->
+
+    <div
+      id="staffPanel"
+      class="card hidden"
+    >
+
+      <h2>管理功能</h2>
+
+      <div class="menu">
+
+        <button onclick="loadCourses()">
+          課程管理
+        </button>
+
+        <button onclick="showCreateCourse()">
+          建立課程
+        </button>
+
+        <button onclick="loadAttendance()">
+          查看簽到紀錄
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         管理員
+    ========================== -->
+
+    <div
+      id="adminPanel"
+      class="card hidden"
+    >
+
+      <h2>管理員功能</h2>
+
+      <button onclick="loadUsers()">
+        使用者管理
+      </button>
+
+      <button onclick="loadLogs()">
+        系統 Logs
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         建立課程
+    ========================== -->
+
+    <div
+      id="createCourseCard"
+      class="card hidden"
+    >
+
+      <h2>建立課程</h2>
+
+      <label>課程名稱</label>
+      <input id="courseName">
+
+      <label>日期</label>
+      <input
+        id="courseDate"
+        type="date"
+      >
+
+      <label>開始時間</label>
+      <input
+        id="startTime"
+        type="time"
+      >
+
+      <label>結束時間</label>
+      <input
+        id="endTime"
+        type="time"
+      >
+
+      <label>地點</label>
+      <input id="location">
+
+      <label>課程說明</label>
+      <textarea id="description"></textarea>
+
+      <button onclick="createCourse()">
+        建立課程
+      </button>
+
+      <button
+        class="secondary"
+        onclick="hideCreateCourse()"
+      >
+        返回
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         使用者管理
+    ========================== -->
+
+    <div
+      id="usersCard"
+      class="card hidden"
+    >
+
+      <h2>使用者管理</h2>
+
+      <div id="usersList">
+        載入中……
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         Logs
+    ========================== -->
+
+    <div
+      id="logsCard"
+      class="card hidden"
+    >
+
+      <h2>系統 Logs</h2>
+
+      <div id="logsList">
+        載入中……
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <button
+        class="secondary"
+        onclick="logoutLINE()"
+      >
+        登出 LINE
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* ==================================================
+     系統設定
+  ================================================== */
+
+  const LIFF_ID =
+    '2011196867-72x76BlI';
+
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycbzoll0ZZHiHeqCs12p0O9aqdwfWmjgIYKprSRK729RChjuEMQHPF7EyU9TgxjMdGxyI/exec';
+
+
+  let idToken = '';
+
+  let profile = null;
+
+  let currentUser = null;
+
+  let currentStudent = null;
+
+  let currentRole = null;
+
+
+  /* ==================================================
+     初始化
+  ================================================== */
+
+  window.onload = async function() {
+
+    try {
+
+      showStatus(
+        '正在啟動 LINE 課程簽到系統……'
+      );
+
+      await liff.init({
+        liffId: LIFF_ID
+      });
+
+
+      if (!liff.isLoggedIn()) {
+
+        showStatus(
+          '請使用 LINE 登入。'
+        );
+
+        document
+          .getElementById('loginCard')
+          .classList.remove('hidden');
+
+        return;
+
+      }
+
+
+      await startSystem();
+
+    }
+
+    catch(error) {
+
+      showError(
+        '系統啟動失敗：' +
+        error.message
+      );
+
+    }
+
+  };
+
+
+  /* ==================================================
+     LINE 登入
+  ================================================== */
+
+  function loginLINE() {
+
+    liff.login();
+
+  }
+
+
+  /* ==================================================
+     啟動系統
+  ================================================== */
+
+  async function startSystem() {
+
+    try {
+
+      idToken =
+        liff.getIDToken();
+
+
+      profile =
+        await liff.getProfile();
+
+
+      const result =
+        await api(
+          'checkUser',
+          {
+            idToken:
+              idToken
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error ||
+          '登入驗證失敗'
+        );
+
+      }
+
+
+      document
+        .getElementById('loginCard')
+        .classList.add('hidden');
+
+
+      if (
+        !result.registered
+      ) {
+
+        showStatus(
+          '第一次使用，請先完成學員驗證。'
+        );
+
+        document
+          .getElementById('verifyCard')
+          .classList.remove('hidden');
+
+        return;
+
+      }
+
+
+      currentRole =
+        result.role;
+
+
+      currentUser =
+        result.user ||
+        null;
+
+
+      currentStudent =
+        result.student ||
+        null;
+
+
+      showMain();
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     學員驗證
+  ================================================== */
+
+  async function verifyStudent() {
+
+    const StudentID =
+      document
+        .getElementById('studentId')
+        .value
+        .trim();
+
+
+    const Name =
+      document
+        .getElementById('studentName')
+        .value
+        .trim();
+
+
+    const Phone =
+      document
+        .getElementById('studentPhone')
+        .value
+        .trim();
+
+
+    if (
+      !StudentID ||
+      !Name ||
+      !Phone
+    ) {
+
+      showError(
+        '請完整填寫學員編號、姓名及手機號碼。'
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      showStatus(
+        '正在驗證學員資料……'
+      );
+
+
+      const result =
+        await api(
+          'verifyStudent',
+          {
+
+            idToken:
+              idToken,
+
+            StudentID:
+              StudentID,
+
+            Name:
+              Name,
+
+            Phone:
+              Phone
+
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      const bindResult =
+        await api(
+          'bindLine',
+          {
+
+            idToken:
+              idToken,
+
+            StudentID:
+              StudentID
+
+          }
+        );
+
+
+      if (!bindResult.success) {
+
+        throw new Error(
+          bindResult.error
+        );
+
+      }
+
+
+      currentRole =
+        'STUDENT';
+
+
+      currentStudent =
+        result.student;
+
+
+      document
+        .getElementById('verifyCard')
+        .classList.add('hidden');
+
+
+      showMain();
+
+
+      showSuccess(
+        'LINE 綁定成功！歡迎加入課程簽到系統。'
+      );
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     顯示主畫面
+  ================================================== */
+
+  function showMain() {
+
+    document
+      .getElementById('mainCard')
+      .classList.remove('hidden');
+
+
+    document
+      .getElementById('userName')
+      .textContent =
+      profile
+        ? profile.displayName
+        : '使用者';
+
+
+    document
+      .getElementById('userRole')
+      .textContent =
+      '身份：' +
+      (currentRole || 'USER');
+
+
+    if (profile && profile.pictureUrl) {
+
+      document
+        .getElementById('userPicture')
+        .src =
+        profile.pictureUrl;
+
+    }
+
+
+    if (
+      currentRole ===
+      'STUDENT'
+    ) {
+
+      document
+        .getElementById('studentPanel')
+        .classList.remove('hidden');
+
+      loadCourses();
+
+    }
+
+
+    if (
+      currentRole ===
+      'TEACHER'
+    ) {
+
+      document
+        .getElementById('staffPanel')
+        .classList.remove('hidden');
+
+      loadCourses();
+
+    }
+
+
+    if (
+      currentRole ===
+      'ADMIN'
+    ) {
+
+      document
+        .getElementById('staffPanel')
+        .classList.remove('hidden');
+
+      document
+        .getElementById('adminPanel')
+        .classList.remove('hidden');
+
+      loadCourses();
+
+    }
+
+  }
+
+
+  /* ==================================================
+     課程
+  ================================================== */
+
+  async function loadCourses() {
+
+    try {
+
+      showStatus(
+        '正在載入課程……'
+      );
+
+
+      const result =
+        await api(
+          'getCourses',
+          {}
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      const container =
+        document
+          .getElementById(
+            'coursesList'
+          );
+
+
+      container.innerHTML = '';
+
+
+      if (
+        !result.courses ||
+        result.courses.length === 0
+      ) {
+
+        container.innerHTML =
+          '<div class="loading">目前沒有課程。</div>';
+
+        return;
+
+      }
+
+
+      result.courses.forEach(
+        course => {
+
+          const div =
+            document.createElement(
+              'div'
+            );
+
+
+          div.className =
+            'course';
+
+
+          let badgeClass =
+            'badge';
+
+
+          if (
+            course.Status ===
+            'OPEN'
+          ) {
+
+            badgeClass +=
+              ' badge-open';
+
+          }
+
+
+          if (
+            course.Status ===
+            'CANCELLED'
+          ) {
+
+            badgeClass +=
+              ' badge-cancelled';
+
+          }
+
+
+          if (
+            course.Status ===
+            'DRAFT'
+          ) {
+
+            badgeClass +=
+              ' badge-draft';
+
+          }
+
+
+          div.innerHTML = `
+
+            <div class="course-title">
+              ${escapeHTML(
+                course.CourseName || ''
+              )}
+            </div>
+
+            <div class="course-info">
+
+              日期：
+              ${escapeHTML(
+                course.CourseDate || ''
+              )}
+
+              <br>
+
+              時間：
+              ${escapeHTML(
+                course.StartTime || ''
+              )}
+              -
+              ${escapeHTML(
+                course.EndTime || ''
+              )}
+
+              <br>
+
+              地點：
+              ${escapeHTML(
+                course.Location || '未提供'
+              )}
+
+              <br>
+
+              老師：
+              ${escapeHTML(
+                course.TeacherName || '未指定'
+              )}
+
+              <br>
+
+              <span class="${badgeClass}">
+                ${escapeHTML(
+                  course.Status || ''
+                )}
+              </span>
+
+            </div>
+
+          `;
+
+
+          if (
+            currentRole ===
+            'STUDENT' &&
+            course.Status ===
+            'OPEN'
+          ) {
+
+            const button =
+              document.createElement(
+                'button'
+              );
+
+
+            button.textContent =
+              '立即簽到';
+
+
+            button.onclick =
+              function() {
+
+                checkIn(
+                  course.CourseID
+                );
+
+              };
+
+
+            div.appendChild(
+              button
+            );
+
+          }
+
+
+          if (
+            currentRole ===
+            'TEACHER' ||
+            currentRole ===
+            'ADMIN'
+          ) {
+
+            if (
+              course.Status !==
+              'OPEN'
+            ) {
+
+              const openButton =
+                document.createElement(
+                  'button'
+                );
+
+
+              openButton.textContent =
+                '開放簽到';
+
+
+              openButton.onclick =
+                function() {
+
+                  changeCourseStatus(
+                    course.CourseID,
+                    'openCourse'
+                  );
+
+                };
+
+
+              div.appendChild(
+                openButton
+              );
+
+            }
+
+
+            if (
+              course.Status ===
+              'OPEN'
+            ) {
+
+              const closeButton =
+                document.createElement(
+                  'button'
+                );
+
+
+              closeButton.textContent =
+                '關閉簽到';
+
+
+              closeButton.className =
+                'secondary';
+
+
+              closeButton.onclick =
+                function() {
+
+                  changeCourseStatus(
+                    course.CourseID,
+                    'closeCourse'
+                  );
+
+                };
+
+
+              div.appendChild(
+                closeButton
+              );
+
+            }
+
+          }
+
+
+          container.appendChild(
+            div
+          );
+
+        }
+      );
+
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     簽到
+  ================================================== */
+
+  async function checkIn(
+    CourseID
+  ) {
+
+    if (
+      !confirm(
+        '確定要簽到嗎？'
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    try {
+
+      showStatus(
+        '正在簽到……'
+      );
+
+
+      const result =
+        await api(
+          'checkIn',
+          {
+
+            idToken:
+              idToken,
+
+            CourseID:
+              CourseID
+
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      if (
+        result.alreadyCheckedIn
+      ) {
+
+        showSuccess(
+          '您已完成簽到。'
+        );
+
+      }
+
+      else {
+
+        showSuccess(
+          '簽到成功！'
+        );
+
+      }
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     建立課程
+  ================================================== */
+
+  function showCreateCourse() {
+
+    document
+      .getElementById(
+        'createCourseCard'
+      )
+      .classList.remove(
+        'hidden'
+      );
+
+    window.scrollTo(
+      0,
+      document.body.scrollHeight
+    );
+
+  }
+
+
+  function hideCreateCourse() {
+
+    document
+      .getElementById(
+        'createCourseCard'
+      )
+      .classList.add(
+        'hidden'
+      );
+
+  }
+
+
+  async function createCourse() {
+
+    try {
+
+      const data = {
+
+        idToken:
+          idToken,
+
+        CourseName:
+          document
+            .getElementById(
+              'courseName'
+            )
+            .value,
+
+        CourseDate:
+          document
+            .getElementById(
+              'courseDate'
+            )
+            .value,
+
+        StartTime:
+          document
+            .getElementById(
+              'startTime'
+            )
+            .value,
+
+        EndTime:
+          document
+            .getElementById(
+              'endTime'
+            )
+            .value,
+
+        Location:
+          document
+            .getElementById(
+              'location'
+            )
+            .value,
+
+        Description:
+          document
+            .getElementById(
+              'description'
+            )
+            .value
+
+      };
+
+
+      const result =
+        await api(
+          'createCourse',
+          data
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      showSuccess(
+        '課程建立成功！'
+      );
+
+
+      hideCreateCourse();
+
+
+      loadCourses();
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     課程狀態
+  ================================================== */
+
+  async function changeCourseStatus(
+    CourseID,
+    action
+  ) {
+
+    try {
+
+      const result =
+        await api(
+          action,
+          {
+
+            idToken:
+              idToken,
+
+            CourseID:
+              CourseID
+
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      showSuccess(
+        '課程狀態已更新。'
+      );
+
+
+      loadCourses();
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     使用者
+  ================================================== */
+
+  async function loadUsers() {
+
+    try {
+
+      const result =
+        await api(
+          'getUsers',
+          {
+            idToken:
+              idToken
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      const card =
+        document
+          .getElementById(
+            'usersCard'
+          );
+
+
+      card.classList.remove(
+        'hidden'
+      );
+
+
+      const list =
+        document
+          .getElementById(
+            'usersList'
+          );
+
+
+      list.innerHTML = '';
+
+
+      result.users.forEach(
+        user => {
+
+          const div =
+            document.createElement(
+              'div'
+            );
+
+
+          div.className =
+            'course';
+
+
+          div.innerHTML = `
+
+            <strong>
+              ${escapeHTML(
+                user.Name || ''
+              )}
+            </strong>
+
+            <br>
+
+            User ID：
+            ${escapeHTML(
+              user.UserID || ''
+            )}
+
+            <br>
+
+            角色：
+            ${escapeHTML(
+              user.Role || ''
+            )}
+
+            <br>
+
+            狀態：
+            ${escapeHTML(
+              user.Status || ''
+            )}
+
+          `;
+
+
+          list.appendChild(
+            div
+          );
+
+        }
+      );
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     Logs
+  ================================================== */
+
+  async function loadLogs() {
+
+    try {
+
+      const result =
+        await api(
+          'getLogs',
+          {
+            idToken:
+              idToken
+          }
+        );
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.error
+        );
+
+      }
+
+
+      const card =
+        document
+          .getElementById(
+            'logsCard'
+          );
+
+
+      card.classList.remove(
+        'hidden'
+      );
+
+
+      const list =
+        document
+          .getElementById(
+            'logsList'
+          );
+
+
+      list.innerHTML = '';
+
+
+      result.logs
+        .slice()
+        .reverse()
+        .slice(
+          0,
+          100
+        )
+        .forEach(
+          log => {
+
+            const div =
+              document.createElement(
+                'div'
+              );
+
+
+            div.className =
+              'course';
+
+
+            div.innerHTML = `
+
+              <strong>
+                ${escapeHTML(
+                  log.Action || ''
+                )}
+              </strong>
+
+              <br>
+
+              時間：
+              ${escapeHTML(
+                log.Time || ''
+              )}
+
+              <br>
+
+              結果：
+              ${escapeHTML(
+                log.Result || ''
+              )}
+
+              <br>
+
+              訊息：
+              ${escapeHTML(
+                log.Message || ''
+              )}
+
+            `;
+
+
+            list.appendChild(
+              div
+            );
+
+          }
+        );
+
+    }
+
+    catch(error) {
+
+      showError(
+        error.message
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     API
+  ================================================== */
+
+  async function api(
+    action,
+    data
+  ) {
+
+    const payload = {
+
+      action:
+        action,
+
+      ...data
+
+    };
+
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method:
+            'POST',
+
+          headers: {
+
+            'Content-Type':
+              'text/plain;charset=utf-8'
+
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+      );
+
+
+    return await response.json();
+
+  }
+
+
+  /* ==================================================
+     登出
+  ================================================== */
+
+  function logoutLINE() {
+
+    if (
+      liff.isLoggedIn()
+    ) {
+
+      liff.logout();
+
+    }
+
+
+    location.reload();
+
+  }
+
+
+  /* ==================================================
+     UI
+  ================================================== */
+
+  function showStatus(
+    message
+  ) {
+
+    const box =
+      document
+        .getElementById(
+          'statusBox'
+        );
+
+
+    box.className =
+      'status';
+
+
+    box.textContent =
+      message;
+
+  }
+
+
+  function showSuccess(
+    message
+  ) {
+
+    const box =
+      document
+        .getElementById(
+          'statusBox'
+        );
+
+
+    box.className =
+      'status success';
+
+
+    box.textContent =
+      message;
+
+  }
+
+
+  function showError(
+    message
+  ) {
+
+    const box =
+      document
+        .getElementById(
+          'statusBox'
+        );
+
+
+    box.className =
+      'status error';
+
+
+    box.textContent =
+      message;
+
+  }
+
+
+  /* ==================================================
+     防止 HTML 注入
+  ================================================== */
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value || ''
+    )
+      .replace(
+        /&/g,
+        '&amp;'
+      )
+      .replace(
+        /</g,
+        '&lt;'
+      )
+      .replace(
+        />/g,
+        '&gt;'
+      )
+      .replace(
+        /"/g,
+        '&quot;'
+      )
+      .replace(
+        /'/g,
+        '&#039;'
+      );
+
+  }
+
+</script>
 
 </body>
 </html>
