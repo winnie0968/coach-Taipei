@@ -18,178 +18,226 @@
       font-family:
         -apple-system,
         BlinkMacSystemFont,
-        "Segoe UI",
         "Noto Sans TC",
+        "Microsoft JhengHei",
         sans-serif;
       background: #f5f6f8;
       color: #333;
     }
 
     .container {
-      max-width: 600px;
+      width: 100%;
+      max-width: 520px;
       margin: 0 auto;
-      padding: 24px 16px 50px;
+      padding: 20px;
     }
 
     .header {
       text-align: center;
-      padding: 25px 10px;
+      padding: 30px 10px 20px;
     }
 
     .header h1 {
+      margin: 0;
       font-size: 24px;
-      margin: 0 0 8px;
+      line-height: 1.5;
+      font-weight: 700;
     }
 
     .header p {
+      margin: 8px 0 0;
       color: #777;
-      margin: 0;
+      font-size: 15px;
     }
 
     .card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
       margin-bottom: 16px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    }
+
+    .welcome {
+      text-align: center;
+    }
+
+    .welcome h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .welcome p {
+      color: #777;
+      line-height: 1.7;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #06c755;
+      color: white;
+    }
+
+    button:disabled {
+      background: #bbb;
+      cursor: not-allowed;
+    }
+
+    .secondary {
+      background: #555;
+    }
+
+    .danger {
+      background: #d9534f;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #06c755;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
     }
 
     .hidden {
       display: none !important;
     }
 
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 13px 16px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #06c755;
-      color: white;
-    }
-
-    button.secondary {
-      background: #555;
-    }
-
-    button.danger {
-      background: #d9534f;
-    }
-
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      margin-bottom: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-
-    .status {
+    .message {
       padding: 12px;
       border-radius: 10px;
       margin-bottom: 15px;
-      background: #eef7ff;
+      line-height: 1.6;
+      display: none;
     }
 
-    .success {
-      background: #e9f9ef;
-      color: #176b35;
+    .message.show {
+      display: block;
     }
 
-    .error {
+    .message.success {
+      background: #e8f8ef;
+      color: #167a43;
+    }
+
+    .message.error {
       background: #fff0f0;
-      color: #a33;
+      color: #c62828;
+    }
+
+    .message.info {
+      background: #eef5ff;
+      color: #2864b0;
+    }
+
+    .user-info {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .user-name {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .role {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #eee;
+      font-size: 13px;
     }
 
     .course {
       border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 15px;
+      border-radius: 14px;
+      padding: 16px;
       margin-bottom: 12px;
     }
 
-    .course-title {
+    .course-name {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
       margin-bottom: 8px;
     }
 
     .course-info {
       color: #666;
-      line-height: 1.7;
       font-size: 14px;
+      line-height: 1.8;
     }
 
-    .badge {
+    .status {
       display: inline-block;
-      padding: 4px 9px;
-      border-radius: 20px;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 15px;
       font-size: 12px;
       background: #eee;
-      margin-top: 5px;
     }
 
-    .badge-open {
-      background: #dff7e7;
-      color: #16813b;
+    .status.open {
+      background: #e8f8ef;
+      color: #167a43;
     }
 
-    .badge-draft {
+    .status.closed {
       background: #eee;
-      color: #666;
+      color: #777;
     }
 
-    .badge-cancelled {
-      background: #ffe1e1;
-      color: #a33;
+    .attendance-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .attendance-item:last-child {
+      border-bottom: none;
+    }
+
+    .attendance-course {
+      font-weight: 700;
+    }
+
+    .attendance-time {
+      color: #777;
+      font-size: 14px;
+      margin-top: 5px;
     }
 
     .loading {
       text-align: center;
-      padding: 25px;
       color: #777;
+      padding: 20px;
     }
 
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .user-info img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-
-    .menu button {
-      margin-top: 8px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #888;
-    }
-
-    .center {
+    .footer {
       text-align: center;
+      color: #aaa;
+      font-size: 12px;
+      padding: 30px 0;
     }
   </style>
 </head>
@@ -198,120 +246,141 @@
 
 <div class="container">
 
-  <!-- =========================
-       HEADER
-  ========================== -->
-
+  <!-- 標題 -->
   <div class="header">
     <h1>臺北市體育運動教練職業工會</h1>
     <p>課程簽到系統</p>
   </div>
 
 
-  <!-- =========================
-       系統狀態
-  ========================== -->
-
-  <div id="statusBox" class="status">
-    系統正在啟動……
-  </div>
+  <!-- 系統訊息 -->
+  <div id="message" class="message"></div>
 
 
   <!-- =========================
-       登入
-  ========================== -->
+       登入頁
+       ========================= -->
+  <section id="loginPage">
 
-  <div id="loginCard" class="card center hidden">
+    <div class="card welcome">
 
-    <h2>歡迎使用</h2>
+      <h2>歡迎使用</h2>
 
-    <p>
-      請使用 LINE 登入課程簽到系統
-    </p>
+      <p>
+        請使用 LINE 登入課程簽到系統
+      </p>
 
-    <button onclick="loginLINE()">
-      使用 LINE 登入
-    </button>
+      <button
+        id="lineLoginBtn"
+        onclick="loginWithLine()">
+        使用 LINE 登入
+      </button>
 
-  </div>
+    </div>
 
-
-  <!-- =========================
-       綁定學員
-  ========================== -->
-
-  <div id="verifyCard" class="card hidden">
-
-    <h2>第一次使用</h2>
-
-    <p>
-      請輸入您的學員資料進行驗證。
-    </p>
-
-    <label>學員編號</label>
-    <input id="studentId" placeholder="例如：S001">
-
-    <label>姓名</label>
-    <input id="studentName" placeholder="請輸入姓名">
-
-    <label>手機號碼</label>
-    <input id="studentPhone" placeholder="例如：0912345678">
-
-    <button onclick="verifyStudent()">
-      驗證並綁定 LINE
-    </button>
-
-  </div>
+  </section>
 
 
   <!-- =========================
-       主畫面
-  ========================== -->
+       學員登入
+       ========================= -->
+  <section id="studentLoginPage" class="hidden">
 
-  <div id="mainCard" class="hidden">
+    <div class="card">
+
+      <h2>學員登入</h2>
+
+      <p>
+        請輸入您在工會登記的姓名。
+      </p>
+
+      <label>
+        學員姓名
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        placeholder="請輸入姓名">
+
+      <div id="phoneArea" class="hidden">
+
+        <label>
+          手機號碼
+        </label>
+
+        <input
+          id="studentPhone"
+          type="tel"
+          placeholder="請輸入手機號碼">
+
+        <p style="font-size:13px;color:#888;">
+          系統找到多位同名學員，請輸入手機號碼確認身分。
+        </p>
+
+      </div>
+
+      <button
+        id="studentLoginBtn"
+        onclick="studentLogin()">
+        登入
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       首頁
+       ========================= -->
+  <section id="homePage" class="hidden">
 
     <div class="card">
 
       <div class="user-info">
 
-        <img
-          id="userPicture"
-          src=""
-          alt=""
-        >
+        <div
+          id="userName"
+          class="user-name">
+        </div>
 
-        <div>
-
-          <strong id="userName">
-            使用者
-          </strong>
-
-          <div
-            id="userRole"
-            class="small"
-          ></div>
-
+        <div
+          id="userRole"
+          class="role">
         </div>
 
       </div>
 
+      <button onclick="loadCourses()">
+        查看課程
+      </button>
+
+      <button
+        class="secondary"
+        onclick="loadAttendance()">
+        查看簽到紀錄
+      </button>
+
+      <button
+        class="secondary"
+        onclick="logout()">
+        登出
+      </button>
+
     </div>
 
+  </section>
 
-    <!-- =========================
-         學員首頁
-    ========================== -->
 
-    <div
-      id="studentPanel"
-      class="card hidden"
-    >
+  <!-- =========================
+       課程列表
+       ========================= -->
+  <section id="coursesPage" class="hidden">
 
-      <h2>我的課程</h2>
+    <div class="card">
 
-      <button onclick="loadCourses()">
-        重新整理課程
-      </button>
+      <h2>課程列表</h2>
 
       <div id="coursesList">
         <div class="loading">
@@ -319,160 +388,46 @@
         </div>
       </div>
 
-    </div>
-
-
-    <!-- =========================
-         老師 / 管理員
-    ========================== -->
-
-    <div
-      id="staffPanel"
-      class="card hidden"
-    >
-
-      <h2>管理功能</h2>
-
-      <div class="menu">
-
-        <button onclick="loadCourses()">
-          課程管理
-        </button>
-
-        <button onclick="showCreateCourse()">
-          建立課程
-        </button>
-
-        <button onclick="loadAttendance()">
-          查看簽到紀錄
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         管理員
-    ========================== -->
-
-    <div
-      id="adminPanel"
-      class="card hidden"
-    >
-
-      <h2>管理員功能</h2>
-
-      <button onclick="loadUsers()">
-        使用者管理
-      </button>
-
-      <button onclick="loadLogs()">
-        系統 Logs
-      </button>
-
-    </div>
-
-
-    <!-- =========================
-         建立課程
-    ========================== -->
-
-    <div
-      id="createCourseCard"
-      class="card hidden"
-    >
-
-      <h2>建立課程</h2>
-
-      <label>課程名稱</label>
-      <input id="courseName">
-
-      <label>日期</label>
-      <input
-        id="courseDate"
-        type="date"
-      >
-
-      <label>開始時間</label>
-      <input
-        id="startTime"
-        type="time"
-      >
-
-      <label>結束時間</label>
-      <input
-        id="endTime"
-        type="time"
-      >
-
-      <label>地點</label>
-      <input id="location">
-
-      <label>課程說明</label>
-      <textarea id="description"></textarea>
-
-      <button onclick="createCourse()">
-        建立課程
-      </button>
-
       <button
         class="secondary"
-        onclick="hideCreateCourse()"
-      >
+        onclick="showHome()">
         返回
       </button>
 
     </div>
 
-
-    <!-- =========================
-         使用者管理
-    ========================== -->
-
-    <div
-      id="usersCard"
-      class="card hidden"
-    >
-
-      <h2>使用者管理</h2>
-
-      <div id="usersList">
-        載入中……
-      </div>
-
-    </div>
+  </section>
 
 
-    <!-- =========================
-         Logs
-    ========================== -->
-
-    <div
-      id="logsCard"
-      class="card hidden"
-    >
-
-      <h2>系統 Logs</h2>
-
-      <div id="logsList">
-        載入中……
-      </div>
-
-    </div>
-
+  <!-- =========================
+       簽到紀錄
+       ========================= -->
+  <section id="attendancePage" class="hidden">
 
     <div class="card">
 
+      <h2>我的簽到紀錄</h2>
+
+      <div id="attendanceList">
+        <div class="loading">
+          載入紀錄中……
+        </div>
+      </div>
+
       <button
         class="secondary"
-        onclick="logoutLINE()"
-      >
-        登出 LINE
+        onclick="showHome()">
+        返回
       </button>
 
     </div>
 
+  </section>
+
+
+  <div class="footer">
+    臺北市體育運動教練職業工會<br>
+    課程簽到系統 V2.0
   </div>
 
 </div>
@@ -482,37 +437,37 @@
 
   /* ==================================================
      系統設定
-  ================================================== */
+     ================================================== */
 
   const LIFF_ID =
-    '2011196867-72x76BlI';
-
+    "2011196867-72x76BlI";
 
   const API_URL =
-    'https://script.google.com/macros/s/AKfycbzoll0ZZHiHeqCs12p0O9aqdwfWmjgIYKprSRK729RChjuEMQHPF7EyU9TgxjMdGxyI/exec';
+    "https://script.google.com/macros/s/AKfycbzoll0ZZHiHeqCs12p0O9aqdwfWmjgIYKprSRK729RChjuEMQHPF7EyU9TgxjMdGxyI/exec";
 
 
-  let idToken = '';
+  let idToken = null;
 
-  let profile = null;
-
-  let currentUser = null;
+  let lineProfile = null;
 
   let currentStudent = null;
+
+  let currentUser = null;
 
   let currentRole = null;
 
 
   /* ==================================================
      初始化
-  ================================================== */
+     ================================================== */
 
-  window.onload = async function() {
+  async function init() {
 
     try {
 
-      showStatus(
-        '正在啟動 LINE 課程簽到系統……'
+      showMessage(
+        "系統初始化中……",
+        "info"
       );
 
       await liff.init({
@@ -522,51 +477,75 @@
 
       if (!liff.isLoggedIn()) {
 
-        showStatus(
-          '請使用 LINE 登入。'
-        );
+        hideAllPages();
 
         document
-          .getElementById('loginCard')
-          .classList.remove('hidden');
+          .getElementById("loginPage")
+          .classList.remove("hidden");
+
+        hideMessage();
 
         return;
 
       }
 
 
-      await startSystem();
+      await loadLineUser();
 
-    }
 
-    catch(error) {
+    } catch (error) {
 
-      showError(
-        '系統啟動失敗：' +
-        error.message
+      console.error(error);
+
+      showMessage(
+        "系統初始化失敗：" +
+        error.message,
+        "error"
       );
 
     }
-
-  };
-
-
-  /* ==================================================
-     LINE 登入
-  ================================================== */
-
-  function loginLINE() {
-
-    liff.login();
 
   }
 
 
   /* ==================================================
-     啟動系統
-  ================================================== */
+     LINE 登入
+     ================================================== */
 
-  async function startSystem() {
+  async function loginWithLine() {
+
+    try {
+
+      if (!liff.isLoggedIn()) {
+
+        liff.login();
+
+        return;
+
+      }
+
+      await loadLineUser();
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "LINE 登入失敗：" +
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* ==================================================
+     取得 LINE 使用者
+     ================================================== */
+
+  async function loadLineUser() {
 
     try {
 
@@ -574,16 +553,24 @@
         liff.getIDToken();
 
 
-      profile =
+      if (!idToken) {
+
+        throw new Error(
+          "無法取得 LINE 登入資訊"
+        );
+
+      }
+
+
+      lineProfile =
         await liff.getProfile();
 
 
       const result =
         await api(
-          'checkUser',
+          "checkUser",
           {
-            idToken:
-              idToken
+            idToken: idToken
           }
         );
 
@@ -592,56 +579,68 @@
 
         throw new Error(
           result.error ||
-          '登入驗證失敗'
+          "登入失敗"
         );
 
       }
 
 
-      document
-        .getElementById('loginCard')
-        .classList.add('hidden');
+      if (result.registered) {
+
+        currentRole =
+          result.role;
 
 
-      if (
-        !result.registered
-      ) {
+        if (
+          result.role === "STUDENT"
+        ) {
 
-        showStatus(
-          '第一次使用，請先完成學員驗證。'
-        );
+          currentStudent =
+            result.student;
 
-        document
-          .getElementById('verifyCard')
-          .classList.remove('hidden');
+          showHome();
+
+        }
+
+        else {
+
+          currentUser =
+            result.user;
+
+          showHome();
+
+        }
 
         return;
 
       }
 
 
-      currentRole =
-        result.role;
+      /*
+       * 尚未綁定
+       * 顯示學員登入
+       */
+
+      hideAllPages();
+
+      document
+        .getElementById(
+          "studentLoginPage"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+      hideMessage();
 
 
-      currentUser =
-        result.user ||
-        null;
+    } catch (error) {
 
+      console.error(error);
 
-      currentStudent =
-        result.student ||
-        null;
-
-
-      showMain();
-
-    }
-
-    catch(error) {
-
-      showError(
-        error.message
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
@@ -650,40 +649,34 @@
 
 
   /* ==================================================
-     學員驗證
-  ================================================== */
+     學員登入
+     ================================================== */
 
-  async function verifyStudent() {
+  async function studentLogin() {
 
-    const StudentID =
+    const name =
       document
-        .getElementById('studentId')
+        .getElementById(
+          "studentName"
+        )
         .value
         .trim();
 
 
-    const Name =
+    const phone =
       document
-        .getElementById('studentName')
+        .getElementById(
+          "studentPhone"
+        )
         .value
         .trim();
 
 
-    const Phone =
-      document
-        .getElementById('studentPhone')
-        .value
-        .trim();
+    if (!name) {
 
-
-    if (
-      !StudentID ||
-      !Name ||
-      !Phone
-    ) {
-
-      showError(
-        '請完整填寫學員編號、姓名及手機號碼。'
+      showMessage(
+        "請輸入學員姓名",
+        "error"
       );
 
       return;
@@ -691,30 +684,31 @@
     }
 
 
+    const button =
+      document
+        .getElementById(
+          "studentLoginBtn"
+        );
+
+
+    button.disabled = true;
+
+    button.innerText =
+      "登入中……";
+
+
     try {
 
-      showStatus(
-        '正在驗證學員資料……'
-      );
+      /*
+       * 第一次先只用姓名查詢
+       */
 
-
-      const result =
+      let result =
         await api(
-          'verifyStudent',
+          "findStudentByName",
           {
-
-            idToken:
-              idToken,
-
-            StudentID:
-              StudentID,
-
-            Name:
-              Name,
-
-            Phone:
-              Phone
-
+            idToken: idToken,
+            Name: name
           }
         );
 
@@ -722,63 +716,117 @@
       if (!result.success) {
 
         throw new Error(
-          result.error
+          result.error ||
+          "登入失敗"
         );
 
       }
 
 
-      const bindResult =
+      /*
+       * 沒有找到
+       */
+
+      if (
+        result.count === 0
+      ) {
+
+        throw new Error(
+          "找不到此姓名的學員資料，請確認姓名是否正確。"
+        );
+
+      }
+
+
+      /*
+       * 同名
+       */
+
+      if (
+        result.count > 1 &&
+        !phone
+      ) {
+
+        document
+          .getElementById(
+            "phoneArea"
+          )
+          .classList.remove(
+            "hidden"
+          );
+
+        showMessage(
+          "系統找到多位同名學員，請輸入手機號碼。",
+          "info"
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * 真正登入
+       */
+
+      result =
         await api(
-          'bindLine',
+          "loginStudent",
           {
-
-            idToken:
-              idToken,
-
-            StudentID:
-              StudentID
-
+            idToken: idToken,
+            Name: name,
+            Phone: phone
           }
         );
 
 
-      if (!bindResult.success) {
+      if (!result.success) {
 
         throw new Error(
-          bindResult.error
+          result.error ||
+          "登入失敗"
         );
 
       }
-
-
-      currentRole =
-        'STUDENT';
 
 
       currentStudent =
         result.student;
 
-
-      document
-        .getElementById('verifyCard')
-        .classList.add('hidden');
+      currentRole =
+        "STUDENT";
 
 
-      showMain();
+      showMessage(
+        "登入成功！",
+        "success"
+      );
 
 
-      showSuccess(
-        'LINE 綁定成功！歡迎加入課程簽到系統。'
+      setTimeout(
+        showHome,
+        500
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
 
-    catch(error) {
 
-      showError(
-        error.message
-      );
+    finally {
+
+      button.disabled = false;
+
+      button.innerText =
+        "登入";
 
     }
 
@@ -786,106 +834,99 @@
 
 
   /* ==================================================
-     顯示主畫面
-  ================================================== */
+     顯示首頁
+     ================================================== */
 
-  function showMain() {
+  function showHome() {
 
-    document
-      .getElementById('mainCard')
-      .classList.remove('hidden');
-
+    hideAllPages();
 
     document
-      .getElementById('userName')
-      .textContent =
-      profile
-        ? profile.displayName
-        : '使用者';
+      .getElementById(
+        "homePage"
+      )
+      .classList.remove(
+        "hidden"
+      );
 
 
-    document
-      .getElementById('userRole')
-      .textContent =
-      '身份：' +
-      (currentRole || 'USER');
+    const nameElement =
+      document.getElementById(
+        "userName"
+      );
 
-
-    if (profile && profile.pictureUrl) {
-
-      document
-        .getElementById('userPicture')
-        .src =
-        profile.pictureUrl;
-
-    }
+    const roleElement =
+      document.getElementById(
+        "userRole"
+      );
 
 
     if (
-      currentRole ===
-      'STUDENT'
+      currentRole === "STUDENT" &&
+      currentStudent
     ) {
 
-      document
-        .getElementById('studentPanel')
-        .classList.remove('hidden');
+      nameElement.innerText =
+        currentStudent.Name || "";
 
-      loadCourses();
+      roleElement.innerText =
+        "學員";
+
+    }
+
+    else if (currentUser) {
+
+      nameElement.innerText =
+        currentUser.Name || "";
+
+      roleElement.innerText =
+        roleText(
+          currentUser.Role
+        );
 
     }
 
 
-    if (
-      currentRole ===
-      'TEACHER'
-    ) {
-
-      document
-        .getElementById('staffPanel')
-        .classList.remove('hidden');
-
-      loadCourses();
-
-    }
-
-
-    if (
-      currentRole ===
-      'ADMIN'
-    ) {
-
-      document
-        .getElementById('staffPanel')
-        .classList.remove('hidden');
-
-      document
-        .getElementById('adminPanel')
-        .classList.remove('hidden');
-
-      loadCourses();
-
-    }
+    hideMessage();
 
   }
 
 
   /* ==================================================
      課程
-  ================================================== */
+     ================================================== */
 
   async function loadCourses() {
 
-    try {
+    hideAllPages();
 
-      showStatus(
-        '正在載入課程……'
+    document
+      .getElementById(
+        "coursesPage"
+      )
+      .classList.remove(
+        "hidden"
       );
 
 
+    const list =
+      document.getElementById(
+        "coursesList"
+      );
+
+
+    list.innerHTML =
+      '<div class="loading">載入課程中……</div>';
+
+
+    try {
+
       const result =
         await api(
-          'getCourses',
-          {}
+          "getCourses",
+          {
+            idToken: idToken
+          }
         );
 
 
@@ -898,22 +939,13 @@
       }
 
 
-      const container =
-        document
-          .getElementById(
-            'coursesList'
-          );
+      const courses =
+        result.courses || [];
 
 
-      container.innerHTML = '';
+      if (courses.length === 0) {
 
-
-      if (
-        !result.courses ||
-        result.courses.length === 0
-      ) {
-
-        container.innerHTML =
+        list.innerHTML =
           '<div class="loading">目前沒有課程。</div>';
 
         return;
@@ -921,236 +953,126 @@
       }
 
 
-      result.courses.forEach(
-        course => {
-
-          const div =
-            document.createElement(
-              'div'
-            );
+      list.innerHTML =
+        "";
 
 
-          div.className =
-            'course';
+      courses
+        .sort(
+          (a,b) =>
+            String(
+              a.CourseDate
+            )
+            .localeCompare(
+              String(
+                b.CourseDate
+              )
+            )
+        )
+        .forEach(
+          course => {
+
+            const div =
+              document.createElement(
+                "div"
+              );
+
+            div.className =
+              "course";
 
 
-          let badgeClass =
-            'badge';
+            const status =
+              String(
+                course.Status || ""
+              )
+              .toUpperCase();
 
 
-          if (
-            course.Status ===
-            'OPEN'
-          ) {
+            div.innerHTML = `
 
-            badgeClass +=
-              ' badge-open';
-
-          }
-
-
-          if (
-            course.Status ===
-            'CANCELLED'
-          ) {
-
-            badgeClass +=
-              ' badge-cancelled';
-
-          }
-
-
-          if (
-            course.Status ===
-            'DRAFT'
-          ) {
-
-            badgeClass +=
-              ' badge-draft';
-
-          }
-
-
-          div.innerHTML = `
-
-            <div class="course-title">
-              ${escapeHTML(
-                course.CourseName || ''
-              )}
-            </div>
-
-            <div class="course-info">
-
-              日期：
-              ${escapeHTML(
-                course.CourseDate || ''
-              )}
-
-              <br>
-
-              時間：
-              ${escapeHTML(
-                course.StartTime || ''
-              )}
-              -
-              ${escapeHTML(
-                course.EndTime || ''
-              )}
-
-              <br>
-
-              地點：
-              ${escapeHTML(
-                course.Location || '未提供'
-              )}
-
-              <br>
-
-              老師：
-              ${escapeHTML(
-                course.TeacherName || '未指定'
-              )}
-
-              <br>
-
-              <span class="${badgeClass}">
-                ${escapeHTML(
-                  course.Status || ''
+              <div class="course-name">
+                ${escapeHtml(
+                  course.CourseName || ""
                 )}
+              </div>
+
+              <div class="course-info">
+
+                日期：
+                ${escapeHtml(
+                  course.CourseDate || ""
+                )}
+
+                <br>
+
+                時間：
+                ${escapeHtml(
+                  course.StartTime || ""
+                )}
+                -
+                ${escapeHtml(
+                  course.EndTime || ""
+                )}
+
+                <br>
+
+                地點：
+                ${escapeHtml(
+                  course.Location || "未提供"
+                )}
+
+                <br>
+
+                老師：
+                ${escapeHtml(
+                  course.TeacherName || "未提供"
+                )}
+
+              </div>
+
+              <span class="status ${
+                status === "OPEN"
+                  ? "open"
+                  : "closed"
+              }">
+
+                ${statusText(status)}
+
               </span>
 
-            </div>
+              ${
+                currentRole === "STUDENT" &&
+                status === "OPEN"
+                  ? `
+                    <button
+                      onclick="checkIn('${escapeJs(
+                        course.CourseID
+                      )}')">
+                      課程簽到
+                    </button>
+                    `
+                  : ""
+              }
 
-          `;
-
-
-          if (
-            currentRole ===
-            'STUDENT' &&
-            course.Status ===
-            'OPEN'
-          ) {
-
-            const button =
-              document.createElement(
-                'button'
-              );
-
-
-            button.textContent =
-              '立即簽到';
+            `;
 
 
-            button.onclick =
-              function() {
-
-                checkIn(
-                  course.CourseID
-                );
-
-              };
-
-
-            div.appendChild(
-              button
+            list.appendChild(
+              div
             );
 
           }
+        );
 
 
-          if (
-            currentRole ===
-            'TEACHER' ||
-            currentRole ===
-            'ADMIN'
-          ) {
+    } catch (error) {
 
-            if (
-              course.Status !==
-              'OPEN'
-            ) {
+      list.innerHTML =
+        "";
 
-              const openButton =
-                document.createElement(
-                  'button'
-                );
-
-
-              openButton.textContent =
-                '開放簽到';
-
-
-              openButton.onclick =
-                function() {
-
-                  changeCourseStatus(
-                    course.CourseID,
-                    'openCourse'
-                  );
-
-                };
-
-
-              div.appendChild(
-                openButton
-              );
-
-            }
-
-
-            if (
-              course.Status ===
-              'OPEN'
-            ) {
-
-              const closeButton =
-                document.createElement(
-                  'button'
-                );
-
-
-              closeButton.textContent =
-                '關閉簽到';
-
-
-              closeButton.className =
-                'secondary';
-
-
-              closeButton.onclick =
-                function() {
-
-                  changeCourseStatus(
-                    course.CourseID,
-                    'closeCourse'
-                  );
-
-                };
-
-
-              div.appendChild(
-                closeButton
-              );
-
-            }
-
-          }
-
-
-          container.appendChild(
-            div
-          );
-
-        }
-      );
-
-
-    }
-
-    catch(error) {
-
-      showError(
-        error.message
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
@@ -1160,15 +1082,15 @@
 
   /* ==================================================
      簽到
-  ================================================== */
+     ================================================== */
 
   async function checkIn(
-    CourseID
+    courseId
   ) {
 
     if (
       !confirm(
-        '確定要簽到嗎？'
+        "確定要進行課程簽到嗎？"
       )
     ) {
 
@@ -1179,22 +1101,15 @@
 
     try {
 
-      showStatus(
-        '正在簽到……'
-      );
-
-
       const result =
         await api(
-          'checkIn',
+          "checkIn",
           {
-
             idToken:
               idToken,
 
             CourseID:
-              CourseID
-
+              courseId
           }
         );
 
@@ -1212,26 +1127,28 @@
         result.alreadyCheckedIn
       ) {
 
-        showSuccess(
-          '您已完成簽到。'
+        showMessage(
+          "您已完成此課程簽到。",
+          "info"
         );
 
       }
 
       else {
 
-        showSuccess(
-          '簽到成功！'
+        showMessage(
+          "簽到成功！",
+          "success"
         );
 
       }
 
-    }
 
-    catch(error) {
+    } catch (error) {
 
-      showError(
-        error.message
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
@@ -1240,199 +1157,37 @@
 
 
   /* ==================================================
-     建立課程
-  ================================================== */
+     簽到紀錄
+     ================================================== */
 
-  function showCreateCourse() {
+  async function loadAttendance() {
+
+    hideAllPages();
 
     document
       .getElementById(
-        'createCourseCard'
+        "attendancePage"
       )
       .classList.remove(
-        'hidden'
-      );
-
-    window.scrollTo(
-      0,
-      document.body.scrollHeight
-    );
-
-  }
-
-
-  function hideCreateCourse() {
-
-    document
-      .getElementById(
-        'createCourseCard'
-      )
-      .classList.add(
-        'hidden'
-      );
-
-  }
-
-
-  async function createCourse() {
-
-    try {
-
-      const data = {
-
-        idToken:
-          idToken,
-
-        CourseName:
-          document
-            .getElementById(
-              'courseName'
-            )
-            .value,
-
-        CourseDate:
-          document
-            .getElementById(
-              'courseDate'
-            )
-            .value,
-
-        StartTime:
-          document
-            .getElementById(
-              'startTime'
-            )
-            .value,
-
-        EndTime:
-          document
-            .getElementById(
-              'endTime'
-            )
-            .value,
-
-        Location:
-          document
-            .getElementById(
-              'location'
-            )
-            .value,
-
-        Description:
-          document
-            .getElementById(
-              'description'
-            )
-            .value
-
-      };
-
-
-      const result =
-        await api(
-          'createCourse',
-          data
-        );
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.error
-        );
-
-      }
-
-
-      showSuccess(
-        '課程建立成功！'
+        "hidden"
       );
 
 
-      hideCreateCourse();
-
-
-      loadCourses();
-
-    }
-
-    catch(error) {
-
-      showError(
-        error.message
+    const list =
+      document.getElementById(
+        "attendanceList"
       );
 
-    }
 
-  }
+    list.innerHTML =
+      '<div class="loading">載入紀錄中……</div>';
 
-
-  /* ==================================================
-     課程狀態
-  ================================================== */
-
-  async function changeCourseStatus(
-    CourseID,
-    action
-  ) {
 
     try {
 
       const result =
         await api(
-          action,
-          {
-
-            idToken:
-              idToken,
-
-            CourseID:
-              CourseID
-
-          }
-        );
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.error
-        );
-
-      }
-
-
-      showSuccess(
-        '課程狀態已更新。'
-      );
-
-
-      loadCourses();
-
-    }
-
-    catch(error) {
-
-      showError(
-        error.message
-      );
-
-    }
-
-  }
-
-
-  /* ==================================================
-     使用者
-  ================================================== */
-
-  async function loadUsers() {
-
-    try {
-
-      const result =
-        await api(
-          'getUsers',
+          "getAttendance",
           {
             idToken:
               idToken
@@ -1449,190 +1204,61 @@
       }
 
 
-      const card =
-        document
-          .getElementById(
-            'usersCard'
-          );
+      const records =
+        result.attendance || [];
 
 
-      card.classList.remove(
-        'hidden'
-      );
+      if (
+        records.length === 0
+      ) {
 
+        list.innerHTML =
+          '<div class="loading">目前沒有簽到紀錄。</div>';
 
-      const list =
-        document
-          .getElementById(
-            'usersList'
-          );
-
-
-      list.innerHTML = '';
-
-
-      result.users.forEach(
-        user => {
-
-          const div =
-            document.createElement(
-              'div'
-            );
-
-
-          div.className =
-            'course';
-
-
-          div.innerHTML = `
-
-            <strong>
-              ${escapeHTML(
-                user.Name || ''
-              )}
-            </strong>
-
-            <br>
-
-            User ID：
-            ${escapeHTML(
-              user.UserID || ''
-            )}
-
-            <br>
-
-            角色：
-            ${escapeHTML(
-              user.Role || ''
-            )}
-
-            <br>
-
-            狀態：
-            ${escapeHTML(
-              user.Status || ''
-            )}
-
-          `;
-
-
-          list.appendChild(
-            div
-          );
-
-        }
-      );
-
-    }
-
-    catch(error) {
-
-      showError(
-        error.message
-      );
-
-    }
-
-  }
-
-
-  /* ==================================================
-     Logs
-  ================================================== */
-
-  async function loadLogs() {
-
-    try {
-
-      const result =
-        await api(
-          'getLogs',
-          {
-            idToken:
-              idToken
-          }
-        );
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.error
-        );
+        return;
 
       }
 
 
-      const card =
-        document
-          .getElementById(
-            'logsCard'
-          );
+      list.innerHTML =
+        "";
 
 
-      card.classList.remove(
-        'hidden'
-      );
-
-
-      const list =
-        document
-          .getElementById(
-            'logsList'
-          );
-
-
-      list.innerHTML = '';
-
-
-      result.logs
-        .slice()
+      records
         .reverse()
-        .slice(
-          0,
-          100
-        )
         .forEach(
-          log => {
+          record => {
 
             const div =
               document.createElement(
-                'div'
+                "div"
               );
 
-
             div.className =
-              'course';
+              "attendance-item";
 
 
             div.innerHTML = `
 
-              <strong>
-                ${escapeHTML(
-                  log.Action || ''
+              <div class="attendance-course">
+                ${escapeHtml(
+                  record.CourseID || ""
                 )}
-              </strong>
+              </div>
 
-              <br>
+              <div class="attendance-time">
+                簽到時間：
+                ${escapeHtml(
+                  record.CheckInTime || ""
+                )}
+              </div>
 
-              時間：
-              ${escapeHTML(
-                log.Time || ''
-              )}
-
-              <br>
-
-              結果：
-              ${escapeHTML(
-                log.Result || ''
-              )}
-
-              <br>
-
-              訊息：
-              ${escapeHTML(
-                log.Message || ''
-              )}
+              <div class="attendance-time">
+                狀態：
+                ${escapeHtml(
+                  record.Status || ""
+                )}
+              </div>
 
             `;
 
@@ -1644,12 +1270,15 @@
           }
         );
 
-    }
 
-    catch(error) {
+    } catch (error) {
 
-      showError(
-        error.message
+      list.innerHTML =
+        "";
+
+      showMessage(
+        error.message,
+        "error"
       );
 
     }
@@ -1659,11 +1288,11 @@
 
   /* ==================================================
      API
-  ================================================== */
+     ================================================== */
 
   async function api(
     action,
-    data
+    data = {}
   ) {
 
     const payload = {
@@ -1681,13 +1310,12 @@
         API_URL,
         {
 
-          method:
-            'POST',
+          method: "POST",
 
           headers: {
 
-            'Content-Type':
-              'text/plain;charset=utf-8'
+            "Content-Type":
+              "text/plain;charset=utf-8"
 
           },
 
@@ -1700,6 +1328,16 @@
       );
 
 
+    if (!response.ok) {
+
+      throw new Error(
+        "API 連線失敗：" +
+        response.status
+      );
+
+    }
+
+
     return await response.json();
 
   }
@@ -1707,15 +1345,23 @@
 
   /* ==================================================
      登出
-  ================================================== */
+     ================================================== */
 
-  function logoutLINE() {
+  function logout() {
 
-    if (
-      liff.isLoggedIn()
-    ) {
+    try {
 
-      liff.logout();
+      if (
+        liff.isLoggedIn()
+      ) {
+
+        liff.logout();
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
 
     }
 
@@ -1726,105 +1372,206 @@
 
 
   /* ==================================================
-     UI
-  ================================================== */
+     頁面
+     ================================================== */
 
-  function showStatus(
-    message
-  ) {
+  function hideAllPages() {
 
-    const box =
-      document
-        .getElementById(
-          'statusBox'
-        );
+    [
 
+      "loginPage",
 
-    box.className =
-      'status';
+      "studentLoginPage",
 
+      "homePage",
 
-    box.textContent =
-      message;
+      "coursesPage",
 
-  }
+      "attendancePage"
 
+    ]
+    .forEach(
+      id => {
 
-  function showSuccess(
-    message
-  ) {
+        document
+          .getElementById(id)
+          .classList.add(
+            "hidden"
+          );
 
-    const box =
-      document
-        .getElementById(
-          'statusBox'
-        );
-
-
-    box.className =
-      'status success';
-
-
-    box.textContent =
-      message;
+      }
+    );
 
   }
 
 
-  function showError(
-    message
+  function showMessage(
+    text,
+    type = "info"
   ) {
 
     const box =
-      document
-        .getElementById(
-          'statusBox'
-        );
+      document.getElementById(
+        "message"
+      );
+
+
+    box.innerText =
+      text;
 
 
     box.className =
-      'status error';
+      "message show " +
+      type;
+
+  }
 
 
-    box.textContent =
-      message;
+  function hideMessage() {
+
+    const box =
+      document.getElementById(
+        "message"
+      );
+
+
+    box.className =
+      "message";
 
   }
 
 
   /* ==================================================
-     防止 HTML 注入
-  ================================================== */
+     角色文字
+     ================================================== */
 
-  function escapeHTML(
+  function roleText(
+    role
+  ) {
+
+    switch (
+      String(
+        role || ""
+      ).toUpperCase()
+    ) {
+
+      case "ADMIN":
+        return "管理者";
+
+      case "TEACHER":
+        return "老師";
+
+      case "STUDENT":
+        return "學員";
+
+      default:
+        return role || "";
+
+    }
+
+  }
+
+
+  /* ==================================================
+     課程狀態
+     ================================================== */
+
+  function statusText(
+    status
+  ) {
+
+    switch (
+      String(
+        status || ""
+      ).toUpperCase()
+    ) {
+
+      case "OPEN":
+        return "開放簽到";
+
+      case "CLOSED":
+        return "已關閉";
+
+      case "CANCELLED":
+        return "已取消";
+
+      case "DRAFT":
+        return "草稿";
+
+      default:
+        return status || "未知";
+
+    }
+
+  }
+
+
+  /* ==================================================
+     HTML 安全
+     ================================================== */
+
+  function escapeHtml(
     value
   ) {
 
     return String(
-      value || ''
+      value || ""
     )
-      .replace(
-        /&/g,
-        '&amp;'
-      )
-      .replace(
-        /</g,
-        '&lt;'
-      )
-      .replace(
-        />/g,
-        '&gt;'
-      )
-      .replace(
-        /"/g,
-        '&quot;'
-      )
-      .replace(
-        /'/g,
-        '&#039;'
-      );
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
   }
+
+
+  function escapeJs(
+    value
+  ) {
+
+    return String(
+      value || ""
+    )
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+    .replace(
+      /'/g,
+      "\\'"
+    )
+    .replace(
+      /"/g,
+      '\\"'
+    );
+
+  }
+
+
+  /* ==================================================
+     啟動
+     ================================================== */
+
+  window.addEventListener(
+    "load",
+    init
+  );
 
 </script>
 
