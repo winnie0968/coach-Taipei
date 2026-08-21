@@ -2,20 +2,12 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <title>臺北市體育運動教練職業工會｜課程簽到系統</title>
 
-  <title>
-    臺北市體育運動教練職業工會｜課程簽到系統
-  </title>
-
-  <!-- LINE LIFF -->
-  <script
-    src="https://static.line-scdn.net/liff/edge/2/sdk.js">
-  </script>
+  <!-- LINE LIFF SDK -->
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
   <style>
 
@@ -25,14 +17,11 @@
 
     body {
       margin: 0;
-      padding: 0;
-
       font-family:
         -apple-system,
         BlinkMacSystemFont,
+        "Segoe UI",
         "Noto Sans TC",
-        "Microsoft JhengHei",
-        Arial,
         sans-serif;
 
       background: #f5f6f8;
@@ -51,234 +40,225 @@
     }
 
     .container {
-      width: 100%;
-      max-width: 900px;
+      width: min(1100px, 94%);
       margin: 0 auto;
-      padding: 20px;
     }
 
-    .header {
+    header {
       background: #ffffff;
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
-
-      box-shadow:
-        0 2px 10px rgba(0,0,0,.06);
+      border-bottom: 1px solid #e5e7eb;
+      padding: 22px 0;
+      margin-bottom: 25px;
     }
 
-    .system-title {
-      font-size: 22px;
+    .header-title {
+      font-size: 24px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
-    .system-subtitle {
-      color: #777;
+    .header-subtitle {
+      color: #666;
       font-size: 14px;
     }
 
     .card {
       background: #ffffff;
       border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 18px;
-
+      padding: 25px;
+      margin-bottom: 20px;
       box-shadow:
-        0 2px 10px rgba(0,0,0,.06);
+        0 3px 12px rgba(0,0,0,.06);
+    }
+
+    .login-card {
+      max-width: 520px;
+      margin: 70px auto;
+      text-align: center;
+    }
+
+    .login-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .login-description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: .92;
+    }
+
+    .btn-primary {
+      background: #06c755;
+      color: white;
+    }
+
+    .btn-dark {
+      background: #222;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e9ecef;
+      color: #333;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-warning {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .btn-success {
+      background: #198754;
+      color: white;
+    }
+
+    .btn-small {
+      padding: 8px 12px;
+      font-size: 13px;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .login-page {
-      min-height: 100vh;
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
 
+    .error-box {
+      background: #fff0f0;
+      color: #b42318;
+      border: 1px solid #f5c2c7;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 15px;
+      white-space: pre-wrap;
+    }
+
+    .success-box {
+      background: #edfdf3;
+      color: #067647;
+      border: 1px solid #abefc6;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 15px;
+    }
+
+    .user-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .user-info {
       display: flex;
       align-items: center;
-      justify-content: center;
-
-      padding: 20px;
+      gap: 12px;
     }
 
-    .login-card {
-      width: 100%;
-      max-width: 420px;
-
-      background: #ffffff;
-
-      border-radius: 20px;
-
-      padding: 32px 24px;
-
-      text-align: center;
-
-      box-shadow:
-        0 4px 20px rgba(0,0,0,.08);
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #eee;
+      object-fit: cover;
     }
 
-    .login-title {
-      font-size: 24px;
+    .user-name {
       font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .login-description {
-      color: #777;
-      margin-bottom: 26px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      width: 100%;
-
-      border: 0;
-      border-radius: 10px;
-
-      padding: 13px 16px;
-
-      margin-top: 8px;
-
-      font-weight: 600;
-
-      transition: .2s;
-    }
-
-    .btn:hover {
-      opacity: .88;
-    }
-
-    .btn-primary {
-      background: #06c755;
-      color: #ffffff;
-    }
-
-    .btn-blue {
-      background: #2563eb;
-      color: #ffffff;
-    }
-
-    .btn-dark {
-      background: #333333;
-      color: #ffffff;
-    }
-
-    .btn-gray {
-      background: #e5e7eb;
-      color: #333333;
-    }
-
-    .btn-danger {
-      background: #dc2626;
-      color: #ffffff;
-    }
-
-    .btn-warning {
-      background: #f59e0b;
-      color: #ffffff;
-    }
-
-    .btn-success {
-      background: #16a34a;
-      color: #ffffff;
     }
 
     .role-badge {
       display: inline-block;
-
-      padding: 5px 12px;
-
+      padding: 4px 9px;
       border-radius: 999px;
-
-      font-size: 13px;
-
       background: #eef2ff;
-      color: #3730a3;
-
-      margin-bottom: 8px;
+      color: #4338ca;
+      font-size: 12px;
+      margin-top: 4px;
     }
 
-    .user-name {
-      font-size: 20px;
-      font-weight: 700;
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
 
-    .menu-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap: 12px;
-
-      margin-top: 18px;
+    .nav button {
+      border: 0;
+      background: #f0f2f5;
+      padding: 10px 14px;
+      border-radius: 9px;
     }
 
-    .menu-button {
-      border: 1px solid #e5e7eb;
-
-      background: #ffffff;
-
-      border-radius: 12px;
-
-      padding: 18px 12px;
-
-      text-align: center;
-
-      font-weight: 600;
-
-      color: #333;
-    }
-
-    .menu-button:hover {
-      background: #f8fafc;
+    .nav button.active {
+      background: #222;
+      color: white;
     }
 
     .section-title {
       font-size: 20px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
     }
 
     .course-card {
       border: 1px solid #e5e7eb;
-
       border-radius: 14px;
-
       padding: 18px;
-
-      margin-bottom: 12px;
-
-      background: #ffffff;
+      background: #fff;
     }
 
     .course-name {
       font-size: 18px;
       font-weight: 700;
-
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .course-info {
-      color: #666;
       font-size: 14px;
-
       line-height: 1.8;
+      color: #555;
     }
 
     .status {
       display: inline-block;
-
-      padding: 4px 9px;
-
       border-radius: 999px;
-
+      padding: 4px 9px;
       font-size: 12px;
-
-      font-weight: 600;
-
-      margin-top: 8px;
+      margin-bottom: 10px;
     }
 
     .status-open {
@@ -292,8 +272,8 @@
     }
 
     .status-closed {
-      background: #fef3c7;
-      color: #92400e;
+      background: #e5e7eb;
+      color: #374151;
     }
 
     .status-cancelled {
@@ -301,210 +281,130 @@
       color: #991b1b;
     }
 
+    .course-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
     .form-group {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .form-label {
       display: block;
-
-      margin-bottom: 6px;
-
-      font-size: 14px;
-
       font-weight: 600;
+      margin-bottom: 7px;
     }
 
-    .form-input,
-    .form-select,
-    .form-textarea {
+    .form-control {
       width: 100%;
-
-      border: 1px solid #d1d5db;
-
+      border: 1px solid #d0d5dd;
       border-radius: 9px;
-
       padding: 11px 12px;
-
-      outline: none;
-
-      background: #ffffff;
+      background: white;
     }
 
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      border-color: #2563eb;
-    }
-
-    .form-textarea {
+    textarea.form-control {
       min-height: 100px;
-
       resize: vertical;
     }
 
-    .button-row {
-      display: flex;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
-
-      margin-top: 12px;
-    }
-
-    .button-row .btn {
-      width: auto;
-
-      flex: 1;
-      min-width: 120px;
-    }
-
-    .table-wrapper {
-      width: 100%;
-
-      overflow-x: auto;
+    .form-row {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
     }
 
     table {
       width: 100%;
-
       border-collapse: collapse;
-
       font-size: 14px;
     }
 
     th,
     td {
-      border-bottom: 1px solid #e5e7eb;
-
-      padding: 10px 8px;
-
+      border-bottom: 1px solid #eee;
+      padding: 11px 8px;
       text-align: left;
-
-      white-space: nowrap;
+      vertical-align: top;
     }
 
     th {
-      background: #f9fafb;
-
+      background: #f8f9fa;
       font-weight: 700;
     }
 
     .empty {
       text-align: center;
-
-      padding: 30px 15px;
-
-      color: #888;
-    }
-
-    .loading {
-      text-align: center;
-
-      padding: 40px 20px;
-
+      padding: 40px 15px;
       color: #777;
     }
 
-    .message {
-      border-radius: 10px;
-
-      padding: 12px 14px;
-
-      margin-bottom: 14px;
-
-      line-height: 1.6;
+    .student-login {
+      max-width: 500px;
+      margin: 0 auto;
     }
 
-    .message-error {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
-    .message-success {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .message-info {
-      background: #eff6ff;
-      color: #1e40af;
+    .top-message {
+      margin-bottom: 20px;
     }
 
     .modal {
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(0,0,0,.45);
-
+      background: rgba(0,0,0,.45);
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       padding: 20px;
-
       z-index: 9999;
     }
 
-    .modal-card {
-      background: #ffffff;
-
-      border-radius: 18px;
-
-      width: 100%;
-      max-width: 600px;
-
+    .modal-content {
+      background: white;
+      width: min(600px, 100%);
       max-height: 90vh;
-
       overflow-y: auto;
-
-      padding: 24px;
+      border-radius: 16px;
+      padding: 25px;
     }
 
-    .modal-title {
-      font-size: 20px;
-
-      font-weight: 700;
-
-      margin-bottom: 18px;
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
-    .close-button {
-      float: right;
-
+    .close-btn {
       border: 0;
-
       background: transparent;
-
       font-size: 24px;
+    }
 
-      cursor: pointer;
+    .login-help {
+      font-size: 13px;
+      color: #777;
+      margin-top: 15px;
+      line-height: 1.7;
     }
 
     @media (max-width: 600px) {
 
-      .container {
-        padding: 12px;
-      }
-
       .card {
-        padding: 17px;
+        padding: 18px;
       }
 
-      .menu-grid {
-        grid-template-columns: 1fr;
+      .header-title {
+        font-size: 20px;
       }
 
-      .button-row {
-        flex-direction: column;
-      }
-
-      .button-row .btn {
-        width: 100%;
+      table {
+        display: block;
+        overflow-x: auto;
       }
 
     }
@@ -515,169 +415,243 @@
 <body>
 
 <!-- ==================================================
-     LOGIN
+     HEADER
      ================================================== -->
 
-<div
-  id="loginPage"
-  class="login-page"
->
+<header>
+  <div class="container">
 
-  <div class="login-card">
-
-    <div class="login-title">
+    <div class="header-title">
       臺北市體育運動教練職業工會
     </div>
 
-    <div class="system-subtitle">
+    <div class="header-subtitle">
       課程簽到系統
     </div>
 
-    <br>
-
-    <div class="login-description">
-      請使用 LINE 登入課程簽到系統
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="startLogin()"
-    >
-      使用 LINE 登入
-    </button>
-
-    <div
-      id="loginMessage"
-      style="margin-top:15px;"
-    ></div>
-
   </div>
-
-</div>
+</header>
 
 
 <!-- ==================================================
      MAIN
      ================================================== -->
 
-<div
-  id="mainPage"
-  class="hidden"
->
+<main class="container">
 
-  <div class="container">
-
-    <!-- Header -->
-
-    <div class="header">
-
-      <div class="system-title">
-        臺北市體育運動教練職業工會
-      </div>
-
-      <div class="system-subtitle">
-        課程簽到系統
-      </div>
-
-    </div>
-
-
-    <!-- User -->
-
-    <div class="card">
-
-      <div
-        id="roleBadge"
-        class="role-badge"
-      >
-        使用者
-      </div>
-
-      <div
-        id="userName"
-        class="user-name"
-      >
-        -
-      </div>
-
-      <div
-        id="userInfo"
-        style="
-          color:#777;
-          margin-top:6px;
-        "
-      >
-      </div>
-
-    </div>
-
-
-    <!-- Message -->
-
-    <div
-      id="globalMessage"
-      class="hidden"
-    ></div>
-
-
-    <!-- Menu -->
-
-    <div
-      id="menuCard"
-      class="card"
-    >
-
-      <div class="section-title">
-        功能選單
-      </div>
-
-      <div
-        id="menuGrid"
-        class="menu-grid"
-      ></div>
-
-    </div>
-
-
-    <!-- Content -->
-
-    <div
-      id="contentArea"
-      class="card"
-    >
-
-      <div class="empty">
-        請選擇上方功能
-      </div>
-
-    </div>
-
+  <!-- 初始化 -->
+  <div id="loadingScreen" class="card loading">
+    系統載入中……
   </div>
 
-</div>
+
+  <!-- ==================================================
+       LOGIN
+       ================================================== -->
+
+  <section id="loginScreen"
+           class="card login-card hidden">
+
+    <div class="login-title">
+      課程簽到系統
+    </div>
+
+    <div class="login-description">
+      請使用 LINE 登入課程簽到系統
+    </div>
+
+    <button
+      id="lineLoginButton"
+      class="btn btn-primary"
+      style="width:100%;">
+
+      使用 LINE 登入
+
+    </button>
+
+    <div id="loginError"
+         class="error-box hidden">
+    </div>
+
+    <div class="login-help">
+
+      登入後，系統會依照您的帳號權限顯示
+      學員、老師或管理員功能。
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================================================
+       STUDENT FIRST LOGIN
+       ================================================== -->
+
+  <section id="studentLoginScreen"
+           class="card hidden">
+
+    <div class="student-login">
+
+      <div class="section-title">
+        學員登入
+      </div>
+
+      <p style="color:#666;line-height:1.7;">
+        請輸入您的學員姓名。
+        如果系統找到多位同名學員，
+        才會要求輸入手機號碼確認身份。
+      </p>
+
+      <div class="form-group">
+
+        <label class="form-label">
+          學員姓名
+        </label>
+
+        <input
+          id="studentName"
+          class="form-control"
+          type="text"
+          placeholder="請輸入姓名">
+
+      </div>
+
+      <div id="phoneGroup"
+           class="form-group hidden">
+
+        <label class="form-label">
+          手機號碼
+        </label>
+
+        <input
+          id="studentPhone"
+          class="form-control"
+          type="tel"
+          placeholder="請輸入手機號碼">
+
+      </div>
+
+      <button
+        id="studentLoginButton"
+        class="btn btn-primary"
+        style="width:100%;">
+
+        登入
+
+      </button>
+
+      <div id="studentLoginMessage"
+           class="error-box hidden">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==================================================
+       APP
+       ================================================== -->
+
+  <section id="appScreen"
+           class="hidden">
+
+    <!-- 使用者資訊 -->
+    <div class="card">
+
+      <div class="user-bar">
+
+        <div class="user-info">
+
+          <img
+            id="userAvatar"
+            class="avatar"
+            src=""
+            alt="">
+
+          <div>
+
+            <div id="userName"
+                 class="user-name">
+              使用者
+            </div>
+
+            <div id="userRole"
+                 class="role-badge">
+              USER
+            </div>
+
+          </div>
+
+        </div>
+
+        <button
+          id="logoutButton"
+          class="btn btn-secondary">
+
+          登出
+
+        </button>
+
+      </div>
+
+
+      <!-- 導覽 -->
+      <div id="navigation"
+           class="nav">
+
+      </div>
+
+    </div>
+
+
+    <!-- 系統訊息 -->
+    <div id="topMessage"
+         class="top-message hidden">
+    </div>
+
+
+    <!-- ==================================================
+         CONTENT
+         ================================================== -->
+
+    <div id="contentArea">
+
+    </div>
+
+  </section>
+
+</main>
 
 
 <!-- ==================================================
      MODAL
      ================================================== -->
 
-<div
-  id="modal"
-  class="modal hidden"
->
+<div id="modal"
+     class="modal hidden">
 
-  <div class="modal-card">
+  <div class="modal-content">
 
-    <button
-      class="close-button"
-      onclick="closeModal()"
-    >
-      ×
-    </button>
+    <div class="modal-header">
 
-    <div
-      id="modalContent"
-    ></div>
+      <div id="modalTitle"
+           class="section-title"
+           style="margin:0;">
+      </div>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div id="modalBody">
+    </div>
 
   </div>
 
@@ -687,12 +661,24 @@
 <script>
 
 /* ==================================================
-   系統設定
+   1. 系統設定
    ================================================== */
 
-const LIFF_ID =
-  '2011196867-72x76BlI';
+const CONFIG = {
 
+  // ★★★ 改成你目前 Apps Script Web App 的 /exec 網址 ★★★
+  API_URL:
+    '請貼上你的 Apps Script Web App /exec 網址',
+
+  LIFF_ID:
+    '2011196867-72x76BlI'
+
+};
+
+
+/* ==================================================
+   2. 全域狀態
+   ================================================== */
 
 let currentUser = null;
 
@@ -700,40 +686,106 @@ let currentRole = null;
 
 let currentStudent = null;
 
+let currentCourses = [];
+
+let currentAttendance = [];
+
 
 /* ==================================================
-   初始化
+   3. DOM
+   ================================================== */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* ==================================================
+   4. 啟動
    ================================================== */
 
 document.addEventListener(
   'DOMContentLoaded',
-  init
+  initApp
 );
 
 
-async function init() {
-
-  showLogin();
+async function initApp() {
 
   try {
 
+    if (
+      !CONFIG.API_URL ||
+      CONFIG.API_URL.includes(
+        '請貼上'
+      )
+    ) {
+
+      throw new Error(
+        '尚未設定 Apps Script Web App /exec 網址'
+      );
+
+    }
+
+
+    /*
+     * 先初始化 LIFF
+     *
+     * LINE 官方要求：
+     * 先 liff.init()
+     * 再使用其他 LIFF API
+     */
+
     await liff.init({
-      liffId: LIFF_ID
+
+      liffId:
+        CONFIG.LIFF_ID,
+
+      withLoginOnExternalBrowser:
+        false
+
     });
 
-    if (!liff.isLoggedIn()) {
+
+    /*
+     * LIFF 初始化成功
+     */
+
+    console.log(
+      'LIFF initialized:',
+      liff.id
+    );
+
+
+    /*
+     * 尚未登入 LINE
+     */
+
+    if (
+      !liff.isLoggedIn()
+    ) {
+
+      showLoginScreen();
 
       return;
 
     }
 
-    await loginWithLINE();
+
+    /*
+     * 已經登入 LINE
+     */
+
+    await continueAfterLineLogin();
+
 
   } catch (error) {
 
-    showLoginMessage(
-      error.message,
-      'error'
+    console.error(
+      error
+    );
+
+    showInitError(
+      error
     );
 
   }
@@ -742,28 +794,51 @@ async function init() {
 
 
 /* ==================================================
-   LINE 登入
+   5. 顯示 LINE 登入頁
    ================================================== */
 
-async function startLogin() {
+function showLoginScreen() {
+
+  $('loadingScreen')
+    .classList
+    .add('hidden');
+
+  $('loginScreen')
+    .classList
+    .remove('hidden');
+
+  $('lineLoginButton')
+    .onclick =
+    startLineLogin;
+
+}
+
+
+/* ==================================================
+   6. LINE Login
+   ================================================== */
+
+function startLineLogin() {
 
   try {
 
-    if (!liff.isLoggedIn()) {
+    if (
+      !liff.isLoggedIn()
+    ) {
 
-      liff.login();
+      liff.login({
 
-      return;
+        redirectUri:
+          window.location.href
+
+      });
 
     }
 
-    await loginWithLINE();
-
   } catch (error) {
 
-    showLoginMessage(
-      error.message,
-      'error'
+    showLoginError(
+      error.message
     );
 
   }
@@ -771,13 +846,192 @@ async function startLogin() {
 }
 
 
-async function loginWithLINE() {
+/* ==================================================
+   7. LINE 登入後
+   ================================================== */
+
+async function continueAfterLineLogin() {
 
   try {
 
-    showLoginMessage(
-      '登入中……',
-      'info'
+    $('loadingScreen')
+      .classList
+      .remove('hidden');
+
+    $('loginScreen')
+      .classList
+      .add('hidden');
+
+
+    /*
+     * ID Token
+     *
+     * 不直接把 LINE User ID 當作身分驗證。
+     */
+
+    const idToken =
+      liff.getIDToken();
+
+
+    if (!idToken) {
+
+      throw new Error(
+        '無法取得 LINE ID Token。請確認 LIFF 已開啟 openid 權限。'
+      );
+
+    }
+
+
+    /*
+     * 詢問 Apps Script：
+     * 這個 LINE 帳號是不是已經註冊？
+     */
+
+    const result =
+      await api(
+        'checkUser',
+        {
+          idToken:
+            idToken
+        }
+      );
+
+
+    /*
+     * 已經是系統使用者
+     */
+
+    if (
+      result.registered
+    ) {
+
+      currentRole =
+        String(
+          result.role || ''
+        ).toUpperCase();
+
+
+      if (
+        currentRole ===
+        'STUDENT'
+      ) {
+
+        currentStudent =
+          result.student;
+
+        currentUser = {
+
+          Name:
+            result.student.Name,
+
+          Role:
+            'STUDENT',
+
+          LINE_User_ID:
+            result.lineUserId
+
+        };
+
+      } else {
+
+        currentUser =
+          result.user;
+
+      }
+
+
+      showApp();
+
+      return;
+
+    }
+
+
+    /*
+     * 尚未註冊
+     *
+     * → 進入學員登入
+     */
+
+    showStudentLogin();
+
+
+  } catch (error) {
+
+    showInitError(
+      error
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   8. 學員登入頁
+   ================================================== */
+
+function showStudentLogin() {
+
+  $('loadingScreen')
+    .classList
+    .add('hidden');
+
+  $('loginScreen')
+    .classList
+    .add('hidden');
+
+  $('appScreen')
+    .classList
+    .add('hidden');
+
+  $('studentLoginScreen')
+    .classList
+    .remove('hidden');
+
+
+  $('studentLoginButton')
+    .onclick =
+    loginStudent;
+
+}
+
+
+/* ==================================================
+   9. 學員登入
+   ================================================== */
+
+async function loginStudent() {
+
+  const name =
+    $('studentName')
+      .value
+      .trim();
+
+
+  const phone =
+    $('studentPhone')
+      .value
+      .trim();
+
+
+  if (!name) {
+
+    showStudentMessage(
+      '請輸入學員姓名'
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    setButtonLoading(
+      $('studentLoginButton'),
+      true,
+      '登入中……'
     );
 
 
@@ -796,513 +1050,11 @@ async function loginWithLINE() {
 
     const result =
       await api(
-        'checkUser',
-        {
-          idToken: idToken
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error ||
-        'LINE 登入失敗'
-      );
-
-    }
-
-
-    currentRole =
-      String(
-        result.role || ''
-      ).toUpperCase();
-
-
-    currentUser =
-      result.user ||
-      null;
-
-
-    currentStudent =
-      result.student ||
-      null;
-
-
-    /*
-     * 尚未登入學員
-     */
-
-    if (
-      result.registered === false
-    ) {
-
-      showStudentLoginPage();
-
-      return;
-
-    }
-
-
-    showMainPage();
-
-  } catch (error) {
-
-    showLoginMessage(
-      error.message,
-      'error'
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   顯示登入頁
-   ================================================== */
-
-function showLogin() {
-
-  document
-    .getElementById(
-      'loginPage'
-    )
-    .classList
-    .remove('hidden');
-
-
-  document
-    .getElementById(
-      'mainPage'
-    )
-    .classList
-    .add('hidden');
-
-}
-
-
-/* ==================================================
-   顯示主頁
-   ================================================== */
-
-function showMainPage() {
-
-  document
-    .getElementById(
-      'loginPage'
-    )
-    .classList
-    .add('hidden');
-
-
-  document
-    .getElementById(
-      'mainPage'
-    )
-    .classList
-    .remove('hidden');
-
-
-  renderUserInfo();
-
-  renderMenu();
-
-}
-
-
-/* ==================================================
-   使用者資訊
-   ================================================== */
-
-function renderUserInfo() {
-
-  const roleText =
-    getRoleText(
-      currentRole
-    );
-
-
-  document
-    .getElementById(
-      'roleBadge'
-    )
-    .textContent =
-      roleText +
-      ' / ' +
-      currentRole;
-
-
-  document
-    .getElementById(
-      'userName'
-    )
-    .textContent =
-      currentUser?.Name ||
-      currentStudent?.Name ||
-      '使用者';
-
-
-  document
-    .getElementById(
-      'userInfo'
-    )
-    .textContent =
-      currentRole === 'STUDENT'
-        ? '學員'
-        : '系統使用者';
-
-}
-
-
-/* ==================================================
-   角色文字
-   ================================================== */
-
-function getRoleText(role) {
-
-  switch (role) {
-
-    case 'ADMIN':
-      return '管理者';
-
-    case 'TEACHER':
-      return '老師';
-
-    case 'STUDENT':
-      return '學員';
-
-    default:
-      return '使用者';
-
-  }
-
-}
-
-
-/* ==================================================
-   功能選單
-   ================================================== */
-
-function renderMenu() {
-
-  const menu =
-    document.getElementById(
-      'menuGrid'
-    );
-
-
-  menu.innerHTML = '';
-
-
-  if (
-    currentRole === 'STUDENT'
-  ) {
-
-    addMenuButton(
-      menu,
-      '查看課程',
-      loadCourses
-    );
-
-
-    addMenuButton(
-      menu,
-      '查看簽到紀錄',
-      loadMyAttendance
-    );
-
-
-    addMenuButton(
-      menu,
-      '登出',
-      logout
-    );
-
-    return;
-
-  }
-
-
-  if (
-    currentRole === 'TEACHER'
-  ) {
-
-    addMenuButton(
-      menu,
-      '建立課程',
-      openCreateCourse
-    );
-
-
-    addMenuButton(
-      menu,
-      '查看課程',
-      loadCourses
-    );
-
-
-    addMenuButton(
-      menu,
-      '查看簽到紀錄',
-      loadTeacherAttendance
-    );
-
-
-    addMenuButton(
-      menu,
-      '登出',
-      logout
-    );
-
-    return;
-
-  }
-
-
-  if (
-    currentRole === 'ADMIN'
-  ) {
-
-    addMenuButton(
-      menu,
-      '建立課程',
-      openCreateCourse
-    );
-
-
-    addMenuButton(
-      menu,
-      '查看課程',
-      loadCourses
-    );
-
-
-    addMenuButton(
-      menu,
-      '查看簽到紀錄',
-      loadAllAttendance
-    );
-
-
-    addMenuButton(
-      menu,
-      '使用者管理',
-      loadUsers
-    );
-
-
-    addMenuButton(
-      menu,
-      '系統紀錄',
-      loadLogs
-    );
-
-
-    addMenuButton(
-      menu,
-      '登出',
-      logout
-    );
-
-  }
-
-}
-
-
-function addMenuButton(
-  container,
-  text,
-  callback
-) {
-
-  const button =
-    document.createElement(
-      'button'
-    );
-
-
-  button.className =
-    'menu-button';
-
-
-  button.textContent =
-    text;
-
-
-  button.onclick =
-    callback;
-
-
-  container.appendChild(
-    button
-  );
-
-}
-
-
-/* ==================================================
-   學員登入
-   ================================================== */
-
-function showStudentLoginPage() {
-
-  document
-    .getElementById(
-      'loginPage'
-    )
-    .classList
-    .add('hidden');
-
-
-  document
-    .getElementById(
-      'mainPage'
-    )
-    .classList
-    .remove('hidden');
-
-
-  document
-    .getElementById(
-      'roleBadge'
-    )
-    .textContent =
-      '學員登入';
-
-
-  document
-    .getElementById(
-      'userName'
-    )
-    .textContent =
-      '請輸入學員姓名';
-
-
-  document
-    .getElementById(
-      'userInfo'
-    )
-    .textContent =
-      '同名學員會再要求輸入手機號碼';
-
-
-  document
-    .getElementById(
-      'menuCard'
-    )
-    .classList
-    .add('hidden');
-
-
-  document
-    .getElementById(
-      'contentArea'
-    )
-    .innerHTML = `
-
-      <div class="section-title">
-        學員登入
-      </div>
-
-      <div
-        id="studentLoginMessage"
-      ></div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          學員姓名
-        </label>
-
-        <input
-          id="studentName"
-          class="form-input"
-          placeholder="請輸入姓名"
-        >
-
-      </div>
-
-      <div
-        id="phoneGroup"
-        class="form-group hidden"
-      >
-
-        <label class="form-label">
-          手機號碼
-        </label>
-
-        <input
-          id="studentPhone"
-          class="form-input"
-          placeholder="請輸入手機號碼"
-          inputmode="tel"
-        >
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="studentLogin()"
-      >
-        登入
-      </button>
-
-    `;
-
-}
-
-
-async function studentLogin() {
-
-  const name =
-    document
-      .getElementById(
-        'studentName'
-      )
-      .value
-      .trim();
-
-
-  const phoneInput =
-    document.getElementById(
-      'studentPhone'
-    );
-
-
-  const phone =
-    phoneInput
-      ? phoneInput.value.trim()
-      : '';
-
-
-  if (!name) {
-
-    showStudentLoginMessage(
-      '請輸入學員姓名',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  try {
-
-    showStudentLoginMessage(
-      '登入中……',
-      'info'
-    );
-
-
-    const result =
-      await api(
         'loginStudent',
         {
 
           idToken:
-            liff.getIDToken(),
+            idToken,
 
           Name:
             name,
@@ -1314,7 +1066,40 @@ async function studentLogin() {
       );
 
 
-    if (!result.success) {
+    /*
+     * 同名
+     *
+     * → 顯示手機欄位
+     */
+
+    if (
+      result.needPhone
+    ) {
+
+      $('phoneGroup')
+        .classList
+        .remove('hidden');
+
+      showStudentMessage(
+        result.message ||
+        '找到多位同名學員，請輸入手機號碼確認身份',
+        false
+      );
+
+      setButtonLoading(
+        $('studentLoginButton'),
+        false,
+        '登入'
+      );
+
+      return;
+
+    }
+
+
+    if (
+      !result.success
+    ) {
 
       throw new Error(
         result.error ||
@@ -1325,51 +1110,786 @@ async function studentLogin() {
 
 
     /*
-     * 同名 → 要求手機
+     * 登入成功
      */
 
+    currentRole =
+      'STUDENT';
+
+    currentStudent =
+      result.student;
+
+    currentUser = {
+
+      Name:
+        result.student.Name,
+
+      Role:
+        'STUDENT',
+
+      LINE_User_ID:
+        result.lineUserId
+
+    };
+
+
+    $('studentLoginScreen')
+      .classList
+      .add('hidden');
+
+
+    showApp();
+
+
+  } catch (error) {
+
+    showStudentMessage(
+      error.message
+    );
+
+  } finally {
+
+    setButtonLoading(
+      $('studentLoginButton'),
+      false,
+      '登入'
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   10. 顯示主系統
+   ================================================== */
+
+function showApp() {
+
+  $('loadingScreen')
+    .classList
+    .add('hidden');
+
+  $('loginScreen')
+    .classList
+    .add('hidden');
+
+  $('studentLoginScreen')
+    .classList
+    .add('hidden');
+
+  $('appScreen')
+    .classList
+    .remove('hidden');
+
+
+  renderUserInfo();
+
+  renderNavigation();
+
+  showDefaultPage();
+
+}
+
+
+/* ==================================================
+   11. 使用者資訊
+   ================================================== */
+
+function renderUserInfo() {
+
+  const role =
+    String(
+      currentRole || ''
+    ).toUpperCase();
+
+
+  let name =
+    '使用者';
+
+
+  if (
+    role === 'STUDENT' &&
+    currentStudent
+  ) {
+
+    name =
+      currentStudent.Name ||
+      '學員';
+
+  } else if (
+    currentUser
+  ) {
+
+    name =
+      currentUser.Name ||
+      currentUser.UserID ||
+      '使用者';
+
+  }
+
+
+  $('userName')
+    .textContent =
+    name;
+
+
+  $('userRole')
+    .textContent =
+    getRoleText(
+      role
+    );
+
+
+  /*
+   * 嘗試取得 LINE 頭像
+   */
+
+  try {
+
     if (
-      result.needPhone
+      liff.getDecodedIDToken
     ) {
 
-      document
-        .getElementById(
-          'phoneGroup'
-        )
-        .classList
-        .remove('hidden');
+      const decoded =
+        liff.getDecodedIDToken();
 
 
-      showStudentLoginMessage(
-        result.message ||
-        '請輸入手機號碼',
-        'info'
+      if (
+        decoded &&
+        decoded.picture
+      ) {
+
+        $('userAvatar')
+          .src =
+          decoded.picture;
+
+      }
+
+    }
+
+  } catch (error) {
+
+    console.log(
+      '無法取得頭像',
+      error
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   12. 角色文字
+   ================================================== */
+
+function getRoleText(
+  role
+) {
+
+  switch (
+    String(
+      role || ''
+    ).toUpperCase()
+  ) {
+
+    case 'ADMIN':
+      return '管理員 / ADMIN';
+
+    case 'TEACHER':
+      return '老師 / TEACHER';
+
+    case 'STUDENT':
+      return '學員 / STUDENT';
+
+    default:
+      return role || 'USER';
+
+  }
+
+}
+
+
+/* ==================================================
+   13. 導覽
+   ================================================== */
+
+function renderNavigation() {
+
+  const nav =
+    $('navigation');
+
+
+  nav.innerHTML =
+    '';
+
+
+  const role =
+    String(
+      currentRole || ''
+    ).toUpperCase();
+
+
+  /*
+   * 所有人
+   */
+
+  addNavButton(
+    nav,
+    '查看課程',
+    'courses'
+  );
+
+
+  /*
+   * 所有人
+   */
+
+  addNavButton(
+    nav,
+    '查看簽到紀錄',
+    'attendance'
+  );
+
+
+  /*
+   * 老師 / 管理員
+   */
+
+  if (
+    role === 'TEACHER' ||
+    role === 'ADMIN'
+  ) {
+
+    addNavButton(
+      nav,
+      '課程管理',
+      'courseManagement'
+    );
+
+  }
+
+
+  /*
+   * 管理員
+   */
+
+  if (
+    role === 'ADMIN'
+  ) {
+
+    addNavButton(
+      nav,
+      '使用者管理',
+      'userManagement'
+    );
+
+    addNavButton(
+      nav,
+      '系統 Logs',
+      'logs'
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   14. 加入 Nav
+   ================================================== */
+
+function addNavButton(
+  container,
+  text,
+  page
+) {
+
+  const button =
+    document.createElement(
+      'button'
+    );
+
+
+  button.textContent =
+    text;
+
+
+  button.onclick =
+    () =>
+      showPage(
+        page,
+        button
       );
 
+
+  container.appendChild(
+    button
+  );
+
+}
+
+
+/* ==================================================
+   15. 預設頁面
+   ================================================== */
+
+function showDefaultPage() {
+
+  showPage(
+    'courses'
+  );
+
+}
+
+
+/* ==================================================
+   16. 顯示頁面
+   ================================================== */
+
+async function showPage(
+  page,
+  clickedButton
+) {
+
+  if (
+    clickedButton
+  ) {
+
+    document
+      .querySelectorAll(
+        '#navigation button'
+      )
+      .forEach(
+        button =>
+          button.classList
+            .remove(
+              'active'
+            )
+      );
+
+
+    clickedButton
+      .classList
+      .add(
+        'active'
+      );
+
+  }
+
+
+  const content =
+    $('contentArea');
+
+
+  content.innerHTML =
+    '<div class="card loading">載入中……</div>';
+
+
+  try {
+
+    switch (
+      page
+    ) {
+
+      case 'courses':
+        await renderCoursesPage();
+        break;
+
+      case 'attendance':
+        await renderAttendancePage();
+        break;
+
+      case 'courseManagement':
+        await renderCourseManagement();
+        break;
+
+      case 'userManagement':
+        await renderUserManagement();
+        break;
+
+      case 'logs':
+        await renderLogs();
+        break;
+
+      default:
+
+        content.innerHTML =
+          '<div class="card">找不到頁面</div>';
+
+    }
+
+  } catch (error) {
+
+    content.innerHTML =
+      '<div class="card">' +
+      '<div class="error-box">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>' +
+      '</div>';
+
+  }
+
+}
+
+
+/* ==================================================
+   17. 課程頁面
+   ================================================== */
+
+async function renderCoursesPage() {
+
+  const result =
+    await api(
+      'getCourses',
+      {}
+    );
+
+
+  currentCourses =
+    result.courses || [];
+
+
+  const role =
+    String(
+      currentRole || ''
+    ).toUpperCase();
+
+
+  let html = '';
+
+  html +=
+    '<div class="card">';
+
+  html +=
+    '<div class="section-title">課程</div>';
+
+
+  if (
+    currentCourses.length === 0
+  ) {
+
+    html +=
+      '<div class="empty">' +
+      '目前沒有課程' +
+      '</div>';
+
+  } else {
+
+    html +=
+      '<div class="grid">';
+
+
+    currentCourses.forEach(
+      course => {
+
+        html +=
+          renderCourseCard(
+            course,
+            role
+          );
+
+      }
+    );
+
+
+    html +=
+      '</div>';
+
+  }
+
+
+  html +=
+    '</div>';
+
+
+  $('contentArea')
+    .innerHTML =
+    html;
+
+}
+
+
+/* ==================================================
+   18. 課程卡片
+   ================================================== */
+
+function renderCourseCard(
+  course,
+  role
+) {
+
+  const status =
+    String(
+      course.Status || ''
+    ).toUpperCase();
+
+
+  let statusClass =
+    'status-draft';
+
+
+  let statusText =
+    status || '未知';
+
+
+  if (
+    status === 'OPEN'
+  ) {
+
+    statusClass =
+      'status-open';
+
+    statusText =
+      '開放簽到';
+
+  } else if (
+    status === 'CLOSED'
+  ) {
+
+    statusClass =
+      'status-closed';
+
+    statusText =
+      '已關閉';
+
+  } else if (
+    status === 'CANCELLED'
+  ) {
+
+    statusClass =
+      'status-cancelled';
+
+    statusText =
+      '已取消';
+
+  } else if (
+    status === 'DRAFT'
+  ) {
+
+    statusText =
+      '草稿';
+
+  }
+
+
+  let html =
+    '<div class="course-card">';
+
+
+  html +=
+    '<span class="status ' +
+    statusClass +
+    '">' +
+    escapeHtml(
+      statusText
+    ) +
+    '</span>';
+
+
+  html +=
+    '<div class="course-name">' +
+    escapeHtml(
+      course.CourseName ||
+      '未命名課程'
+    ) +
+    '</div>';
+
+
+  html +=
+    '<div class="course-info">';
+
+  html +=
+    '📅 ' +
+    escapeHtml(
+      course.CourseDate || ''
+    ) +
+    '<br>';
+
+  html +=
+    '⏰ ' +
+    escapeHtml(
+      course.StartTime || ''
+    ) +
+    ' - ' +
+    escapeHtml(
+      course.EndTime || ''
+    ) +
+    '<br>';
+
+  html +=
+    '👨‍🏫 ' +
+    escapeHtml(
+      course.TeacherName || ''
+    ) +
+    '<br>';
+
+  if (
+    course.Location
+  ) {
+
+    html +=
+      '📍 ' +
+      escapeHtml(
+        course.Location
+      ) +
+      '<br>';
+
+  }
+
+
+  if (
+    course.Description
+  ) {
+
+    html +=
+      '📝 ' +
+      escapeHtml(
+        course.Description
+      );
+
+  }
+
+
+  html +=
+    '</div>';
+
+
+  html +=
+    '<div class="course-actions">';
+
+
+  /*
+   * 學員
+   */
+
+  if (
+    role === 'STUDENT' &&
+    status === 'OPEN'
+  ) {
+
+    html +=
+      '<button class="btn btn-primary btn-small" ' +
+      'onclick="checkInCourse(\'' +
+      escapeJs(
+        course.CourseID
+      ) +
+      '\')">' +
+      '簽到' +
+      '</button>';
+
+  }
+
+
+  /*
+   * 老師 / 管理員
+   */
+
+  if (
+    role === 'TEACHER' ||
+    role === 'ADMIN'
+  ) {
+
+    html +=
+      '<button class="btn btn-secondary btn-small" ' +
+      'onclick="viewCourseAttendance(\'' +
+      escapeJs(
+        course.CourseID
+      ) +
+      '\')">' +
+      '查看簽到' +
+      '</button>';
+
+  }
+
+
+  html +=
+    '</div>';
+
+
+  html +=
+    '</div>';
+
+
+  return html;
+
+}
+
+
+/* ==================================================
+   19. 學員簽到
+   ================================================== */
+
+async function checkInCourse(
+  courseId
+) {
+
+  try {
+
+    if (
+      !confirm(
+        '確定要簽到這堂課嗎？'
+      )
+    ) {
 
       return;
 
     }
 
 
-    currentRole =
-      'STUDENT';
+    const result =
+      await api(
+        'checkIn',
+        {
+
+          idToken:
+            liff.getIDToken(),
+
+          CourseID:
+            courseId
+
+        }
+      );
 
 
-    currentStudent =
-      result.student;
+    if (
+      result.alreadyCheckedIn
+    ) {
+
+      showTopMessage(
+        '您已完成簽到。',
+        'success'
+      );
+
+      return;
+
+    }
 
 
-    currentUser =
-      null;
+    if (
+      result.success
+    ) {
 
+      showTopMessage(
+        '簽到成功！',
+        'success'
+      );
 
-    showMainPage();
+    } else {
 
+      throw new Error(
+        result.error ||
+        '簽到失敗'
+      );
+
+    }
 
   } catch (error) {
 
-    showStudentLoginMessage(
+    showTopMessage(
       error.message,
       'error'
     );
@@ -1380,108 +1900,25 @@ async function studentLogin() {
 
 
 /* ==================================================
-   課程列表
+   20. 簽到紀錄
    ================================================== */
 
-async function loadCourses() {
+async function renderAttendancePage() {
 
-  showLoading(
-    '課程載入中……'
-  );
-
-
-  try {
-
-    const result =
-      await api(
-        'getCourses',
-        {
-          idToken:
-            liff.getIDToken()
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error ||
-        '無法取得課程'
-      );
-
-    }
-
-
-    const courses =
-      result.courses || [];
-
-
-    let html = `
-
-      <div class="section-title">
-        課程列表
-      </div>
-
-    `;
-
-
-    if (
-      courses.length === 0
-    ) {
-
-      html += `
-
-        <div class="empty">
-          目前沒有課程
-        </div>
-
-      `;
-
-    }
-
-
-    courses.forEach(
-      course => {
-
-        html +=
-          renderCourseCard(
-            course
-          );
-
-      }
-    );
-
-
-    setContent(
-      html
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   課程卡片
-   ================================================== */
-
-function renderCourseCard(
-  course
-) {
-
-  const status =
+  const role =
     String(
-      course.Status || ''
+      currentRole || ''
     ).toUpperCase();
 
 
-  let buttons = '';
+  let html =
+    '<div class="card">';
+
+
+  html +=
+    '<div class="section-title">' +
+    '簽到紀錄' +
+    '</div>';
 
 
   /*
@@ -1489,369 +1926,146 @@ function renderCourseCard(
    */
 
   if (
-    currentRole === 'STUDENT'
+    role === 'STUDENT'
   ) {
 
+    const result =
+      await api(
+        'getAttendance',
+        {
+          idToken:
+            liff.getIDToken()
+        }
+      );
+
+
+    currentAttendance =
+      result.attendance || [];
+
+
+    html +=
+      renderAttendanceTable(
+        currentAttendance
+      );
+
+  }
+
+
+  /*
+   * 老師 / 管理員
+   */
+
+  else {
+
+    const courses =
+      await api(
+        'getCourses',
+        {}
+      );
+
+
+    const list =
+      courses.courses || [];
+
+
     if (
-      status === 'OPEN'
+      list.length === 0
     ) {
 
-      buttons += `
+      html +=
+        '<div class="empty">' +
+        '目前沒有課程' +
+        '</div>';
 
-        <button
-          class="btn btn-success"
-          onclick="checkIn('${escapeAttr(course.CourseID)}')"
-        >
-          簽到
-        </button>
+    } else {
 
-      `;
+      html +=
+        '<div class="form-group">';
+
+      html +=
+        '<label class="form-label">' +
+        '選擇課程' +
+        '</label>';
+
+      html +=
+        '<select id="attendanceCourseSelect" ' +
+        'class="form-control">';
+
+      html +=
+        '<option value="">請選擇課程</option>';
+
+
+      list.forEach(
+        course => {
+
+          html +=
+            '<option value="' +
+            escapeHtml(
+              course.CourseID
+            ) +
+            '">' +
+            escapeHtml(
+              course.CourseName
+            ) +
+            '｜' +
+            escapeHtml(
+              course.CourseDate
+            ) +
+            '</option>';
+
+        }
+      );
+
+
+      html +=
+        '</select>';
+
+      html +=
+        '</div>';
+
+
+      html +=
+        '<button class="btn btn-dark" ' +
+        'onclick="loadSelectedAttendance()">' +
+        '查看簽到紀錄' +
+        '</button>';
+
+
+      html +=
+        '<div id="attendanceResult" ' +
+        'style="margin-top:20px;"></div>';
 
     }
 
   }
 
 
-  /*
-   * 老師／管理員
-   */
-
-  if (
-    currentRole === 'TEACHER' ||
-    currentRole === 'ADMIN'
-  ) {
-
-    buttons += `
-
-      <div class="button-row">
-
-        <button
-          class="btn btn-blue"
-          onclick="openEditCourse('${escapeAttr(course.CourseID)}')"
-        >
-          編輯
-        </button>
-
-        ${
-          status !== 'OPEN'
-            ? `
-              <button
-                class="btn btn-success"
-                onclick="changeCourseStatus('${escapeAttr(course.CourseID)}','openCourse')"
-              >
-                開放簽到
-              </button>
-            `
-            : `
-              <button
-                class="btn btn-warning"
-                onclick="changeCourseStatus('${escapeAttr(course.CourseID)}','closeCourse')"
-              >
-                關閉簽到
-              </button>
-            `
-        }
-
-        ${
-          status !== 'CANCELLED'
-            ? `
-              <button
-                class="btn btn-danger"
-                onclick="changeCourseStatus('${escapeAttr(course.CourseID)}','cancelCourse')"
-              >
-                取消課程
-              </button>
-            `
-            : ''
-        }
-
-      </div>
-
-    `;
-
-  }
+  html +=
+    '</div>';
 
 
-  return `
-
-    <div class="course-card">
-
-      <div class="course-name">
-        ${escapeHtml(
-          course.CourseName || ''
-        )}
-      </div>
-
-      <div class="course-info">
-
-        日期：
-        ${escapeHtml(
-          course.CourseDate || ''
-        )}
-
-        <br>
-
-        時間：
-        ${escapeHtml(
-          course.StartTime || ''
-        )}
-        -
-        ${escapeHtml(
-          course.EndTime || ''
-        )}
-
-        <br>
-
-        老師：
-        ${escapeHtml(
-          course.TeacherName || ''
-        )}
-
-        <br>
-
-        地點：
-        ${escapeHtml(
-          course.Location || ''
-        )}
-
-      </div>
-
-      ${renderStatus(status)}
-
-      ${
-        buttons
-          ? `<div style="margin-top:10px;">
-               ${buttons}
-             </div>`
-          : ''
-      }
-
-    </div>
-
-  `;
+  $('contentArea')
+    .innerHTML =
+    html;
 
 }
 
 
 /* ==================================================
-   課程狀態
+   21. 載入指定課程簽到
    ================================================== */
 
-function renderStatus(
-  status
-) {
+async function loadSelectedAttendance() {
 
-  let text =
-    status;
+  const courseId =
+    $('attendanceCourseSelect')
+      .value;
 
 
-  let className =
-    'status-draft';
-
-
-  if (
-    status === 'OPEN'
-  ) {
-
-    text =
-      '開放簽到';
-
-    className =
-      'status-open';
-
-  }
-
-
-  if (
-    status === 'DRAFT'
-  ) {
-
-    text =
-      '尚未開放';
-
-  }
-
-
-  if (
-    status === 'CLOSED'
-  ) {
-
-    text =
-      '已關閉';
-
-    className =
-      'status-closed';
-
-  }
-
-
-  if (
-    status === 'CANCELLED'
-  ) {
-
-    text =
-      '已取消';
-
-    className =
-      'status-cancelled';
-
-  }
-
-
-  return `
-
-    <span class="status ${className}">
-      ${escapeHtml(text)}
-    </span>
-
-  `;
-
-}
-
-
-/* ==================================================
-   建立課程
-   ================================================== */
-
-function openCreateCourse() {
-
-  openModal(`
-
-    <div class="modal-title">
-      建立課程
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        課程名稱
-      </label>
-
-      <input
-        id="courseName"
-        class="form-input"
-        placeholder="例如：跆拳道教練研習"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        課程日期
-      </label>
-
-      <input
-        id="courseDate"
-        type="date"
-        class="form-input"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        開始時間
-      </label>
-
-      <input
-        id="startTime"
-        type="time"
-        class="form-input"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        結束時間
-      </label>
-
-      <input
-        id="endTime"
-        type="time"
-        class="form-input"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        地點
-      </label>
-
-      <input
-        id="courseLocation"
-        class="form-input"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        課程說明
-      </label>
-
-      <textarea
-        id="courseDescription"
-        class="form-textarea"
-      ></textarea>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="createCourse()"
-    >
-      建立課程
-    </button>
-
-  `);
-
-}
-
-
-async function createCourse() {
-
-  const data = {
-
-    idToken:
-      liff.getIDToken(),
-
-    CourseName:
-      valueOf('courseName'),
-
-    CourseDate:
-      valueOf('courseDate'),
-
-    StartTime:
-      valueOf('startTime'),
-
-    EndTime:
-      valueOf('endTime'),
-
-    Location:
-      valueOf('courseLocation'),
-
-    Description:
-      valueOf('courseDescription')
-
-  };
-
-
-  if (
-    !data.CourseName ||
-    !data.CourseDate ||
-    !data.StartTime ||
-    !data.EndTime
-  ) {
+  if (!courseId) {
 
     alert(
-      '課程名稱、日期、開始時間及結束時間為必填'
+      '請先選擇課程'
     );
 
     return;
@@ -1863,12 +2077,508 @@ async function createCourse() {
 
     const result =
       await api(
-        'createCourse',
-        data
+        'getAttendance',
+        {
+
+          idToken:
+            liff.getIDToken(),
+
+          CourseID:
+            courseId
+
+        }
       );
 
 
-    if (!result.success) {
+    $('attendanceResult')
+      .innerHTML =
+      renderAttendanceTable(
+        result.attendance || []
+      );
+
+  } catch (error) {
+
+    $('attendanceResult')
+      .innerHTML =
+      '<div class="error-box">' +
+      escapeHtml(
+        error.message
+      ) +
+      '</div>';
+
+  }
+
+}
+
+
+/* ==================================================
+   22. 簽到表格
+   ================================================== */
+
+function renderAttendanceTable(
+  records
+) {
+
+  if (
+    !records ||
+    records.length === 0
+  ) {
+
+    return (
+      '<div class="empty">' +
+      '目前沒有簽到紀錄' +
+      '</div>'
+    );
+
+  }
+
+
+  let html =
+    '<div style="overflow-x:auto;">';
+
+
+  html +=
+    '<table>';
+
+  html +=
+    '<thead>';
+
+  html +=
+    '<tr>';
+
+  html +=
+    '<th>姓名</th>';
+
+  html +=
+    '<th>簽到時間</th>';
+
+  html +=
+    '<th>狀態</th>';
+
+  html +=
+    '</tr>';
+
+  html +=
+    '</thead>';
+
+  html +=
+    '<tbody>';
+
+
+  records.forEach(
+    record => {
+
+      html +=
+        '<tr>';
+
+      html +=
+        '<td>' +
+        escapeHtml(
+          record.StudentName || ''
+        ) +
+        '</td>';
+
+      html +=
+        '<td>' +
+        escapeHtml(
+          record.CheckInTime || ''
+        ) +
+        '</td>';
+
+      html +=
+        '<td>' +
+        escapeHtml(
+          record.Status || ''
+        ) +
+        '</td>';
+
+      html +=
+        '</tr>';
+
+    }
+  );
+
+
+  html +=
+    '</tbody>';
+
+  html +=
+    '</table>';
+
+  html +=
+    '</div>';
+
+
+  return html;
+
+}
+
+
+/* ==================================================
+   23. 課程管理
+   ================================================== */
+
+async function renderCourseManagement() {
+
+  const role =
+    String(
+      currentRole || ''
+    ).toUpperCase();
+
+
+  if (
+    role !== 'ADMIN' &&
+    role !== 'TEACHER'
+  ) {
+
+    throw new Error(
+      '沒有課程管理權限'
+    );
+
+  }
+
+
+  const result =
+    await api(
+      'getCourses',
+      {}
+    );
+
+
+  currentCourses =
+    result.courses || [];
+
+
+  let html =
+    '<div class="card">';
+
+
+  html +=
+    '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">';
+
+  html +=
+    '<div class="section-title" style="margin:0;">' +
+    '課程管理' +
+    '</div>';
+
+  html +=
+    '<button class="btn btn-primary" ' +
+    'onclick="openCreateCourseModal()">' +
+    '＋ 建立課程' +
+    '</button>';
+
+  html +=
+    '</div>';
+
+
+  html +=
+    '<div style="margin-top:20px;">';
+
+
+  if (
+    currentCourses.length === 0
+  ) {
+
+    html +=
+      '<div class="empty">' +
+      '目前沒有課程' +
+      '</div>';
+
+  } else {
+
+    currentCourses.forEach(
+      course => {
+
+        html +=
+          renderManagementCourse(
+            course,
+            role
+          );
+
+      }
+    );
+
+  }
+
+
+  html +=
+    '</div>';
+
+  html +=
+    '</div>';
+
+
+  $('contentArea')
+    .innerHTML =
+    html;
+
+}
+
+
+/* ==================================================
+   24. 管理課程卡片
+   ================================================== */
+
+function renderManagementCourse(
+  course,
+  role
+) {
+
+  const status =
+    String(
+      course.Status || ''
+    ).toUpperCase();
+
+
+  let html =
+    '<div class="course-card" style="margin-bottom:12px;">';
+
+
+  html +=
+    '<div class="course-name">' +
+    escapeHtml(
+      course.CourseName
+    ) +
+    '</div>';
+
+
+  html +=
+    '<div class="course-info">';
+
+  html +=
+    escapeHtml(
+      course.CourseDate
+    ) +
+    ' ' +
+    escapeHtml(
+      course.StartTime
+    ) +
+    ' - ' +
+    escapeHtml(
+      course.EndTime
+    ) +
+    '<br>';
+
+  html +=
+    '老師：' +
+    escapeHtml(
+      course.TeacherName || ''
+    ) +
+    '<br>';
+
+  html +=
+    '狀態：' +
+    escapeHtml(
+      status
+    );
+
+  html +=
+    '</div>';
+
+
+  html +=
+    '<div class="course-actions">';
+
+
+  html +=
+    '<button class="btn btn-secondary btn-small" ' +
+    'onclick="openEditCourseModal(\'' +
+    escapeJs(
+      course.CourseID
+    ) +
+    '\')">' +
+    '編輯' +
+    '</button>';
+
+
+  if (
+    status !== 'OPEN'
+  ) {
+
+    html +=
+      '<button class="btn btn-success btn-small" ' +
+      'onclick="changeCourseStatus(\'' +
+      escapeJs(
+        course.CourseID
+      ) +
+      '\',\'openCourse\')">' +
+      '開放簽到' +
+      '</button>';
+
+  }
+
+
+  if (
+    status === 'OPEN'
+  ) {
+
+    html +=
+      '<button class="btn btn-warning btn-small" ' +
+      'onclick="changeCourseStatus(\'' +
+      escapeJs(
+        course.CourseID
+      ) +
+      '\',\'closeCourse\')">' +
+      '關閉簽到' +
+      '</button>';
+
+  }
+
+
+  if (
+    status !== 'CANCELLED'
+  ) {
+
+    html +=
+      '<button class="btn btn-danger btn-small" ' +
+      'onclick="cancelCourse(\'' +
+      escapeJs(
+        course.CourseID
+      ) +
+      '\')">' +
+      '取消課程' +
+      '</button>';
+
+  }
+
+
+  html +=
+    '</div>';
+
+  html +=
+    '</div>';
+
+
+  return html;
+
+}
+
+
+/* ==================================================
+   25. 建立課程 Modal
+   ================================================== */
+
+function openCreateCourseModal() {
+
+  $('modalTitle')
+    .textContent =
+    '建立課程';
+
+
+  $('modalBody')
+    .innerHTML =
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">課程名稱</label>' +
+
+      '<input id="newCourseName" class="form-control">' +
+
+    '</div>' +
+
+
+    '<div class="form-row">' +
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">日期</label>' +
+
+        '<input id="newCourseDate" type="date" class="form-control">' +
+
+      '</div>' +
+
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">開始時間</label>' +
+
+        '<input id="newStartTime" type="time" class="form-control">' +
+
+      '</div>' +
+
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">結束時間</label>' +
+
+        '<input id="newEndTime" type="time" class="form-control">' +
+
+      '</div>' +
+
+    '</div>' +
+
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">地點</label>' +
+
+      '<input id="newLocation" class="form-control">' +
+
+    '</div>' +
+
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">課程說明</label>' +
+
+      '<textarea id="newDescription" class="form-control"></textarea>' +
+
+    '</div>' +
+
+
+    '<button class="btn btn-primary" onclick="createCourse()">' +
+
+      '建立課程' +
+
+    '</button>';
+
+
+  openModal();
+
+}
+
+
+/* ==================================================
+   26. 建立課程
+   ================================================== */
+
+async function createCourse() {
+
+  try {
+
+    const result =
+      await api(
+        'createCourse',
+        {
+
+          idToken:
+            liff.getIDToken(),
+
+          CourseName:
+            $('newCourseName').value,
+
+          CourseDate:
+            $('newCourseDate').value,
+
+          StartTime:
+            $('newStartTime').value,
+
+          EndTime:
+            $('newEndTime').value,
+
+          Location:
+            $('newLocation').value,
+
+          Description:
+            $('newDescription').value
+
+        }
+      );
+
+
+    if (
+      !result.success
+    ) {
 
       throw new Error(
         result.error ||
@@ -1880,13 +2590,14 @@ async function createCourse() {
 
     closeModal();
 
-
-    alert(
-      '課程建立成功'
+    showTopMessage(
+      '課程建立成功',
+      'success'
     );
 
 
-    loadCourses();
+    await renderCourseManagement();
+
 
   } catch (error) {
 
@@ -1900,196 +2611,192 @@ async function createCourse() {
 
 
 /* ==================================================
-   編輯課程
+   27. 編輯課程
    ================================================== */
 
-async function openEditCourse(
+function openEditCourseModal(
   courseId
 ) {
 
-  try {
-
-    const result =
-      await api(
-        'getCourse',
-        {
-          CourseID:
-            courseId
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    const c =
-      result.course;
-
-
-    openModal(`
-
-      <div class="modal-title">
-        編輯課程
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          課程名稱
-        </label>
-
-        <input
-          id="editCourseName"
-          class="form-input"
-          value="${escapeAttr(c.CourseName || '')}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          課程日期
-        </label>
-
-        <input
-          id="editCourseDate"
-          type="date"
-          class="form-input"
-          value="${escapeAttr(c.CourseDate || '')}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          開始時間
-        </label>
-
-        <input
-          id="editStartTime"
-          type="time"
-          class="form-input"
-          value="${escapeAttr(c.StartTime || '')}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          結束時間
-        </label>
-
-        <input
-          id="editEndTime"
-          type="time"
-          class="form-input"
-          value="${escapeAttr(c.EndTime || '')}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          地點
-        </label>
-
-        <input
-          id="editLocation"
-          class="form-input"
-          value="${escapeAttr(c.Location || '')}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          課程說明
-        </label>
-
-        <textarea
-          id="editDescription"
-          class="form-textarea"
-        >${escapeHtml(c.Description || '')}</textarea>
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        onclick="updateCourse('${escapeAttr(courseId)}')"
-      >
-        儲存修改
-      </button>
-
-    `);
-
-  } catch (error) {
-
-    alert(
-      error.message
+  const course =
+    currentCourses.find(
+      item =>
+        String(
+          item.CourseID
+        ) ===
+        String(
+          courseId
+        )
     );
 
+
+  if (!course) {
+
+    alert(
+      '找不到課程'
+    );
+
+    return;
+
   }
+
+
+  $('modalTitle')
+    .textContent =
+    '編輯課程';
+
+
+  $('modalBody')
+    .innerHTML =
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">課程名稱</label>' +
+
+      '<input id="editCourseName" class="form-control" value="' +
+      escapeAttr(
+        course.CourseName
+      ) +
+      '">' +
+
+    '</div>' +
+
+
+    '<div class="form-row">' +
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">日期</label>' +
+
+        '<input id="editCourseDate" type="date" class="form-control" value="' +
+        escapeAttr(
+          course.CourseDate
+        ) +
+        '">' +
+
+      '</div>' +
+
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">開始時間</label>' +
+
+        '<input id="editStartTime" type="time" class="form-control" value="' +
+        escapeAttr(
+          course.StartTime
+        ) +
+        '">' +
+
+      '</div>' +
+
+
+      '<div class="form-group">' +
+
+        '<label class="form-label">結束時間</label>' +
+
+        '<input id="editEndTime" type="time" class="form-control" value="' +
+        escapeAttr(
+          course.EndTime
+        ) +
+        '">' +
+
+      '</div>' +
+
+    '</div>' +
+
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">地點</label>' +
+
+      '<input id="editLocation" class="form-control" value="' +
+      escapeAttr(
+        course.Location || ''
+      ) +
+      '">' +
+
+    '</div>' +
+
+
+    '<div class="form-group">' +
+
+      '<label class="form-label">課程說明</label>' +
+
+      '<textarea id="editDescription" class="form-control">' +
+      escapeHtml(
+        course.Description || ''
+      ) +
+      '</textarea>' +
+
+    '</div>' +
+
+
+    '<button class="btn btn-primary" onclick="updateCourse(\'' +
+    escapeJs(
+      courseId
+    ) +
+    '\')">' +
+
+      '儲存修改' +
+
+    '</button>';
+
+
+  openModal();
 
 }
 
 
+/* ==================================================
+   28. 儲存課程修改
+   ================================================== */
+
 async function updateCourse(
   courseId
 ) {
-
-  const data = {
-
-    idToken:
-      liff.getIDToken(),
-
-    CourseID:
-      courseId,
-
-    CourseName:
-      valueOf('editCourseName'),
-
-    CourseDate:
-      valueOf('editCourseDate'),
-
-    StartTime:
-      valueOf('editStartTime'),
-
-    EndTime:
-      valueOf('editEndTime'),
-
-    Location:
-      valueOf('editLocation'),
-
-    Description:
-      valueOf('editDescription')
-
-  };
-
 
   try {
 
     const result =
       await api(
         'updateCourse',
-        data
+        {
+
+          idToken:
+            liff.getIDToken(),
+
+          CourseID:
+            courseId,
+
+          CourseName:
+            $('editCourseName').value,
+
+          CourseDate:
+            $('editCourseDate').value,
+
+          StartTime:
+            $('editStartTime').value,
+
+          EndTime:
+            $('editEndTime').value,
+
+          Location:
+            $('editLocation').value,
+
+          Description:
+            $('editDescription').value
+
+        }
       );
 
 
-    if (!result.success) {
+    if (
+      !result.success
+    ) {
 
       throw new Error(
-        result.error
+        result.error ||
+        '修改失敗'
       );
 
     }
@@ -2097,13 +2804,14 @@ async function updateCourse(
 
     closeModal();
 
-
-    alert(
-      '課程修改成功'
+    showTopMessage(
+      '課程修改成功',
+      'success'
     );
 
 
-    loadCourses();
+    await renderCourseManagement();
+
 
   } catch (error) {
 
@@ -2117,39 +2825,13 @@ async function updateCourse(
 
 
 /* ==================================================
-   課程狀態
+   29. 課程狀態
    ================================================== */
 
 async function changeCourseStatus(
   courseId,
   action
 ) {
-
-  const messageMap = {
-
-    openCourse:
-      '確定要開放這堂課程簽到嗎？',
-
-    closeCourse:
-      '確定要關閉這堂課程簽到嗎？',
-
-    cancelCourse:
-      '確定要取消這堂課程嗎？'
-
-  };
-
-
-  if (
-    !confirm(
-      messageMap[action] ||
-      '確定要執行嗎？'
-    )
-  ) {
-
-    return;
-
-  }
-
 
   try {
 
@@ -2168,21 +2850,26 @@ async function changeCourseStatus(
       );
 
 
-    if (!result.success) {
+    if (
+      !result.success
+    ) {
 
       throw new Error(
-        result.error
+        result.error ||
+        '操作失敗'
       );
 
     }
 
 
-    alert(
-      '操作成功'
+    showTopMessage(
+      '課程狀態已更新',
+      'success'
     );
 
 
-    loadCourses();
+    await renderCourseManagement();
+
 
   } catch (error) {
 
@@ -2196,16 +2883,16 @@ async function changeCourseStatus(
 
 
 /* ==================================================
-   學員簽到
+   30. 取消課程
    ================================================== */
 
-async function checkIn(
+async function cancelCourse(
   courseId
 ) {
 
   if (
     !confirm(
-      '確定要簽到這堂課嗎？'
+      '確定要取消這堂課嗎？'
     )
   ) {
 
@@ -2214,11 +2901,27 @@ async function checkIn(
   }
 
 
+  await changeCourseStatus(
+    courseId,
+    'cancelCourse'
+  );
+
+}
+
+
+/* ==================================================
+   31. 查看課程簽到
+   ================================================== */
+
+async function viewCourseAttendance(
+  courseId
+) {
+
   try {
 
     const result =
       await api(
-        'checkIn',
+        'getAttendance',
         {
 
           idToken:
@@ -2231,22 +2934,19 @@ async function checkIn(
       );
 
 
-    if (!result.success) {
+    $('modalTitle')
+      .textContent =
+      '簽到紀錄';
 
-      throw new Error(
-        result.error
+
+    $('modalBody')
+      .innerHTML =
+      renderAttendanceTable(
+        result.attendance || []
       );
 
-    }
 
-
-    alert(
-      result.message ||
-      '簽到成功'
-    );
-
-
-    loadCourses();
+    openModal();
 
   } catch (error) {
 
@@ -2260,648 +2960,198 @@ async function checkIn(
 
 
 /* ==================================================
-   學員簽到紀錄
+   32. 使用者管理
    ================================================== */
 
-async function loadMyAttendance() {
+async function renderUserManagement() {
 
-  showLoading(
-    '簽到紀錄載入中……'
-  );
+  if (
+    String(
+      currentRole
+    ).toUpperCase() !==
+    'ADMIN'
+  ) {
 
-
-  try {
-
-    const result =
-      await api(
-        'getAttendance',
-        {
-          idToken:
-            liff.getIDToken()
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    renderAttendance(
-      result.attendance || []
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
+    throw new Error(
+      '只有管理員可以使用使用者管理'
     );
 
   }
 
-}
 
-
-/* ==================================================
-   老師簽到紀錄
-   ================================================== */
-
-async function loadTeacherAttendance() {
-
-  showLoading(
-    '課程簽到紀錄載入中……'
-  );
-
-
-  try {
-
-    const result =
-      await api(
-        'getCourses',
-        {
-          idToken:
-            liff.getIDToken()
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    const courses =
-      result.courses || [];
-
-
-    let html = `
-
-      <div class="section-title">
-        選擇課程查看簽到紀錄
-      </div>
-
-    `;
-
-
-    if (
-      courses.length === 0
-    ) {
-
-      html += `
-        <div class="empty">
-          目前沒有課程
-        </div>
-      `;
-
-    }
-
-
-    courses.forEach(
-      course => {
-
-        html += `
-
-          <div class="course-card">
-
-            <div class="course-name">
-              ${escapeHtml(
-                course.CourseName
-              )}
-            </div>
-
-            <div class="course-info">
-
-              ${escapeHtml(
-                course.CourseDate
-              )}
-
-              <br>
-
-              ${escapeHtml(
-                course.StartTime
-              )}
-              -
-              ${escapeHtml(
-                course.EndTime
-              )}
-
-            </div>
-
-            <button
-              class="btn btn-blue"
-              onclick="loadCourseAttendance('${escapeAttr(course.CourseID)}')"
-            >
-              查看簽到名單
-            </button>
-
-          </div>
-
-        `;
-
+  const result =
+    await api(
+      'getUsers',
+      {
+        idToken:
+          liff.getIDToken()
       }
     );
 
 
-    setContent(
-      html
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
-
-  }
-
-}
+  const users =
+    result.users || [];
 
 
-/* ==================================================
-   管理員全部簽到
-   ================================================== */
-
-async function loadAllAttendance() {
-
-  showLoading(
-    '簽到紀錄載入中……'
-  );
+  let html =
+    '<div class="card">';
 
 
-  try {
-
-    const result =
-      await api(
-        'getAttendance',
-        {
-          idToken:
-            liff.getIDToken()
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    renderAttendance(
-      result.attendance || []
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   單一課程簽到
-   ================================================== */
-
-async function loadCourseAttendance(
-  courseId
-) {
-
-  showLoading(
-    '簽到名單載入中……'
-  );
-
-
-  try {
-
-    const result =
-      await api(
-        'getAttendance',
-        {
-
-          idToken:
-            liff.getIDToken(),
-
-          CourseID:
-            courseId
-
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    renderAttendance(
-      result.attendance || []
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   顯示簽到紀錄
-   ================================================== */
-
-function renderAttendance(
-  records
-) {
-
-  let html = `
-
-    <div class="section-title">
-      簽到紀錄
-    </div>
-
-  `;
+  html +=
+    '<div class="section-title">' +
+    '使用者管理' +
+    '</div>';
 
 
   if (
-    records.length === 0
+    users.length === 0
   ) {
 
-    html += `
+    html +=
+      '<div class="empty">' +
+      '目前沒有使用者資料' +
+      '</div>';
 
-      <div class="empty">
-        目前沒有簽到紀錄
-      </div>
+  } else {
 
-    `;
+    html +=
+      '<div style="overflow-x:auto;">';
 
-    setContent(
-      html
-    );
+    html +=
+      '<table>';
 
-    return;
+    html +=
+      '<thead><tr>' +
 
-  }
+      '<th>姓名</th>' +
+      '<th>UserID</th>' +
+      '<th>角色</th>' +
+      '<th>狀態</th>' +
+      '<th>操作</th>' +
 
+      '</tr></thead>';
 
-  html += `
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>
-              學員
-            </th>
-
-            <th>
-              課程
-            </th>
-
-            <th>
-              簽到時間
-            </th>
-
-            <th>
-              狀態
-            </th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-  `;
-
-
-  records.forEach(
-    record => {
-
-      html += `
-
-        <tr>
-
-          <td>
-            ${escapeHtml(
-              record.StudentName || ''
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              record.CourseID || ''
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              record.CheckInTime || ''
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              record.Status || ''
-            )}
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
-
-
-  html += `
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  `;
-
-
-  setContent(
-    html
-  );
-
-}
-
-
-/* ==================================================
-   使用者管理
-   ================================================== */
-
-async function loadUsers() {
-
-  showLoading(
-    '使用者資料載入中……'
-  );
-
-
-  try {
-
-    const result =
-      await api(
-        'getUsers',
-        {
-          idToken:
-            liff.getIDToken()
-        }
-      );
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.error
-      );
-
-    }
-
-
-    const users =
-      result.users || [];
-
-
-    let html = `
-
-      <div class="section-title">
-        使用者管理
-      </div>
-
-    `;
-
-
-    if (
-      users.length === 0
-    ) {
-
-      html += `
-
-        <div class="empty">
-          目前沒有使用者
-        </div>
-
-      `;
-
-    }
-
-
-    html += `
-
-      <div class="table-wrapper">
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>
-                姓名
-              </th>
-
-              <th>
-                角色
-              </th>
-
-              <th>
-                狀態
-              </th>
-
-              <th>
-                操作
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-    `;
+    html +=
+      '<tbody>';
 
 
     users.forEach(
       user => {
 
-        html += `
+        html +=
+          '<tr>';
 
-          <tr>
+        html +=
+          '<td>' +
+          escapeHtml(
+            user.Name || ''
+          ) +
+          '</td>';
 
-            <td>
-              ${escapeHtml(
-                user.Name || ''
-              )}
-            </td>
+        html +=
+          '<td>' +
+          escapeHtml(
+            user.UserID || ''
+          ) +
+          '</td>';
 
-            <td>
-              ${escapeHtml(
-                user.Role || ''
-              )}
-            </td>
+        html +=
+          '<td>' +
+          escapeHtml(
+            user.Role || ''
+          ) +
+          '</td>';
 
-            <td>
-              ${escapeHtml(
-                user.Status || ''
-              )}
-            </td>
+        html +=
+          '<td>' +
+          escapeHtml(
+            user.Status || ''
+          ) +
+          '</td>';
 
-            <td>
+        html +=
+          '<td>';
 
-              <button
-                class="btn btn-blue"
-                style="width:auto;"
-                onclick="openRoleEditor('${escapeAttr(user.UserID)}','${escapeAttr(user.Name || '')}','${escapeAttr(user.Role || '')}')"
-              >
-                修改角色
-              </button>
 
-            </td>
+        html +=
+          '<select class="form-control" style="width:auto;display:inline-block;" ' +
+          'onchange="updateUserRole(\'' +
+          escapeJs(
+            user.UserID
+          ) +
+          '\',this.value)">';
 
-          </tr>
 
-        `;
+        ['STUDENT','TEACHER','ADMIN']
+          .forEach(
+            role => {
+
+              html +=
+                '<option value="' +
+                role +
+                '"' +
+                (
+                  String(
+                    user.Role || ''
+                  ).toUpperCase() ===
+                  role
+                    ? ' selected'
+                    : ''
+                ) +
+                '>' +
+                role +
+                '</option>';
+
+            }
+          );
+
+
+        html +=
+          '</select>';
+
+
+        html +=
+          '</td>';
+
+
+        html +=
+          '</tr>';
 
       }
     );
 
 
-    html += `
+    html +=
+      '</tbody>';
 
-          </tbody>
+    html +=
+      '</table>';
 
-        </table>
-
-      </div>
-
-    `;
-
-
-    setContent(
-      html
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
+    html +=
+      '</div>';
 
   }
+
+
+  html +=
+    '</div>';
+
+
+  $('contentArea')
+    .innerHTML =
+    html;
 
 }
 
 
 /* ==================================================
-   修改角色
+   33. 修改角色
    ================================================== */
 
-function openRoleEditor(
+async function updateUserRole(
   userId,
-  name,
   role
 ) {
-
-  openModal(`
-
-    <div class="modal-title">
-      修改使用者角色
-    </div>
-
-    <p>
-      使用者：
-      <strong>
-        ${escapeHtml(name)}
-      </strong>
-    </p>
-
-    <div class="form-group">
-
-      <label class="form-label">
-        角色
-      </label>
-
-      <select
-        id="newRole"
-        class="form-select"
-      >
-
-        <option
-          value="STUDENT"
-          ${role === 'STUDENT' ? 'selected' : ''}
-        >
-          學員
-        </option>
-
-        <option
-          value="TEACHER"
-          ${role === 'TEACHER' ? 'selected' : ''}
-        >
-          老師
-        </option>
-
-        <option
-          value="ADMIN"
-          ${role === 'ADMIN' ? 'selected' : ''}
-        >
-          管理員
-        </option>
-
-      </select>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="updateUserRole('${escapeAttr(userId)}')"
-    >
-      儲存
-    </button>
-
-  `);
-
-}
-
-
-async function updateUserRole(
-  userId
-) {
-
-  const role =
-    valueOf(
-      'newRole'
-    );
-
 
   try {
 
@@ -2923,24 +3173,26 @@ async function updateUserRole(
       );
 
 
-    if (!result.success) {
+    if (
+      !result.success
+    ) {
 
       throw new Error(
-        result.error
+        result.error ||
+        '修改角色失敗'
       );
 
     }
 
 
-    closeModal();
-
-
-    alert(
-      '角色修改成功'
+    showTopMessage(
+      '使用者角色已更新',
+      'success'
     );
 
 
-    loadUsers();
+    await renderUserManagement();
+
 
   } catch (error) {
 
@@ -2954,191 +3206,168 @@ async function updateUserRole(
 
 
 /* ==================================================
-   Logs
+   34. Logs
    ================================================== */
 
-async function loadLogs() {
+async function renderLogs() {
 
-  showLoading(
-    '系統紀錄載入中……'
-  );
+  if (
+    String(
+      currentRole
+    ).toUpperCase() !==
+    'ADMIN'
+  ) {
+
+    throw new Error(
+      '只有管理員可以查看 Logs'
+    );
+
+  }
 
 
-  try {
+  const result =
+    await api(
+      'getLogs',
+      {
 
-    const result =
-      await api(
-        'getLogs',
-        {
-          idToken:
-            liff.getIDToken()
+        idToken:
+          liff.getIDToken()
+
+      }
+    );
+
+
+  const logs =
+    result.logs || [];
+
+
+  let html =
+    '<div class="card">';
+
+
+  html +=
+    '<div class="section-title">' +
+    '系統 Logs' +
+    '</div>';
+
+
+  if (
+    logs.length === 0
+  ) {
+
+    html +=
+      '<div class="empty">' +
+      '目前沒有 Logs' +
+      '</div>';
+
+  } else {
+
+    html +=
+      '<div style="overflow-x:auto;">';
+
+    html +=
+      '<table>';
+
+    html +=
+      '<thead><tr>' +
+
+      '<th>時間</th>' +
+      '<th>Action</th>' +
+      '<th>結果</th>' +
+      '<th>CourseID</th>' +
+      '<th>訊息</th>' +
+
+      '</tr></thead>';
+
+    html +=
+      '<tbody>';
+
+
+    /*
+     * 最新的在前面
+     */
+
+    [...logs]
+      .reverse()
+      .forEach(
+        log => {
+
+          html +=
+            '<tr>';
+
+          html +=
+            '<td>' +
+            escapeHtml(
+              log.Time || ''
+            ) +
+            '</td>';
+
+          html +=
+            '<td>' +
+            escapeHtml(
+              log.Action || ''
+            ) +
+            '</td>';
+
+          html +=
+            '<td>' +
+            escapeHtml(
+              log.Result || ''
+            ) +
+            '</td>';
+
+          html +=
+            '<td>' +
+            escapeHtml(
+              log.CourseID || ''
+            ) +
+            '</td>';
+
+          html +=
+            '<td>' +
+            escapeHtml(
+              log.Message || ''
+            ) +
+            '</td>';
+
+          html +=
+            '</tr>';
+
         }
       );
 
 
-    if (!result.success) {
+    html +=
+      '</tbody>';
 
-      throw new Error(
-        result.error
-      );
+    html +=
+      '</table>';
 
-    }
-
-
-    const logs =
-      result.logs || [];
-
-
-    let html = `
-
-      <div class="section-title">
-        系統紀錄
-      </div>
-
-    `;
-
-
-    if (
-      logs.length === 0
-    ) {
-
-      html += `
-
-        <div class="empty">
-          目前沒有系統紀錄
-        </div>
-
-      `;
-
-    } else {
-
-      html += `
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  時間
-                </th>
-
-                <th>
-                  Action
-                </th>
-
-                <th>
-                  CourseID
-                </th>
-
-                <th>
-                  結果
-                </th>
-
-                <th>
-                  訊息
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-      `;
-
-
-      logs
-        .slice()
-        .reverse()
-        .forEach(
-          log => {
-
-            html += `
-
-              <tr>
-
-                <td>
-                  ${escapeHtml(
-                    log.Time || ''
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    log.Action || ''
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    log.CourseID || ''
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    log.Result || ''
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHtml(
-                    log.Message || ''
-                  )}
-                </td>
-
-              </tr>
-
-            `;
-
-          }
-        );
-
-
-      html += `
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      `;
-
-    }
-
-
-    setContent(
-      html
-    );
-
-  } catch (error) {
-
-    showError(
-      error.message
-    );
+    html +=
+      '</div>';
 
   }
+
+
+  html +=
+    '</div>';
+
+
+  $('contentArea')
+    .innerHTML =
+    html;
 
 }
 
 
 /* ==================================================
-   API
+   35. API
    ================================================== */
 
 async function api(
   action,
   data
 ) {
-
-  const url =
-    window.location.href;
-
 
   const payload =
     Object.assign(
@@ -3153,7 +3382,7 @@ async function api(
 
   const response =
     await fetch(
-      url,
+      CONFIG.API_URL,
       {
 
         method:
@@ -3162,7 +3391,7 @@ async function api(
         headers: {
 
           'Content-Type':
-            'application/json'
+            'text/plain;charset=utf-8'
 
         },
 
@@ -3175,8 +3404,44 @@ async function api(
     );
 
 
-  const result =
-    await response.json();
+  const text =
+    await response.text();
+
+
+  let result;
+
+
+  try {
+
+    result =
+      JSON.parse(
+        text
+      );
+
+  } catch (error) {
+
+    throw new Error(
+      '伺服器回傳的資料不是有效 JSON：\n' +
+      text.substring(
+        0,
+        500
+      )
+    );
+
+  }
+
+
+  if (
+    result &&
+    result.success === false
+  ) {
+
+    throw new Error(
+      result.error ||
+      '系統操作失敗'
+    );
+
+  }
 
 
   return result;
@@ -3185,151 +3450,13 @@ async function api(
 
 
 /* ==================================================
-   UI
+   36. 登出
    ================================================== */
 
-function setContent(
-  html
-) {
+$('logoutButton')
+  .onclick =
+  logout;
 
-  const area =
-    document.getElementById(
-      'contentArea'
-    );
-
-
-  area.innerHTML =
-    html;
-
-
-  area.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-
-}
-
-
-function showLoading(
-  text
-) {
-
-  setContent(`
-
-    <div class="loading">
-      ${escapeHtml(text)}
-    </div>
-
-  `);
-
-}
-
-
-function showError(
-  message
-) {
-
-  setContent(`
-
-    <div class="message message-error">
-      ${escapeHtml(message)}
-    </div>
-
-  `);
-
-}
-
-
-function showLoginMessage(
-  message,
-  type
-) {
-
-  const area =
-    document.getElementById(
-      'loginMessage'
-    );
-
-
-  area.innerHTML = `
-
-    <div class="message message-${type}">
-      ${escapeHtml(message)}
-    </div>
-
-  `;
-
-}
-
-
-function showStudentLoginMessage(
-  message,
-  type
-) {
-
-  const area =
-    document.getElementById(
-      'studentLoginMessage'
-    );
-
-
-  if (!area) {
-    return;
-  }
-
-
-  area.innerHTML = `
-
-    <div class="message message-${type}">
-      ${escapeHtml(message)}
-    </div>
-
-  `;
-
-}
-
-
-/* ==================================================
-   Modal
-   ================================================== */
-
-function openModal(
-  html
-) {
-
-  document
-    .getElementById(
-      'modalContent'
-    )
-    .innerHTML =
-      html;
-
-
-  document
-    .getElementById(
-      'modal'
-    )
-    .classList
-    .remove('hidden');
-
-}
-
-
-function closeModal() {
-
-  document
-    .getElementById(
-      'modal'
-    )
-    .classList
-    .add('hidden');
-
-}
-
-
-/* ==================================================
-   登出
-   ================================================== */
 
 function logout() {
 
@@ -3343,50 +3470,284 @@ function logout() {
 
     }
 
-  } catch (error) {}
+  } catch (error) {
+
+    console.log(
+      error
+    );
+
+  }
+
 
   currentUser =
-    null;
-
-  currentStudent =
     null;
 
   currentRole =
     null;
 
+  currentStudent =
+    null;
 
-  location.reload();
+
+  window.location.reload();
 
 }
 
 
 /* ==================================================
-   工具
+   37. Modal
    ================================================== */
 
-function valueOf(
-  id
-) {
+function openModal() {
 
-  const element =
-    document.getElementById(
-      id
+  $('modal')
+    .classList
+    .remove(
+      'hidden'
     );
-
-
-  return element
-    ? element.value.trim()
-    : '';
 
 }
 
+
+function closeModal() {
+
+  $('modal')
+    .classList
+    .add(
+      'hidden'
+    );
+
+}
+
+
+$('modal')
+  .addEventListener(
+    'click',
+    function(event) {
+
+      if (
+        event.target ===
+        $('modal')
+      ) {
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   38. 顯示訊息
+   ================================================== */
+
+function showTopMessage(
+  message,
+  type
+) {
+
+  const box =
+    $('topMessage');
+
+
+  box.className =
+    type === 'success'
+      ? 'success-box top-message'
+      : 'error-box top-message';
+
+
+  box.textContent =
+    message;
+
+
+  setTimeout(
+    () => {
+
+      box.classList
+        .add(
+          'hidden'
+        );
+
+    },
+    4000
+  );
+
+}
+
+
+/* ==================================================
+   39. Login Error
+   ================================================== */
+
+function showLoginError(
+  message
+) {
+
+  const box =
+    $('loginError');
+
+
+  box.textContent =
+    message;
+
+
+  box.classList
+    .remove(
+      'hidden'
+    );
+
+}
+
+
+function showStudentMessage(
+  message,
+  error = true
+) {
+
+  const box =
+    $('studentLoginMessage');
+
+
+  box.textContent =
+    message;
+
+
+  box.className =
+    error
+      ? 'error-box'
+      : 'success-box';
+
+
+  box.classList
+    .remove(
+      'hidden'
+    );
+
+}
+
+
+/* ==================================================
+   40. 初始化錯誤
+   ================================================== */
+
+function showInitError(
+  error
+) {
+
+  console.error(
+    error
+  );
+
+
+  $('loadingScreen')
+    .classList
+    .add(
+      'hidden'
+    );
+
+
+  $('loginScreen')
+    .classList
+    .remove(
+      'hidden'
+    );
+
+
+  showLoginError(
+    '系統初始化失敗：\n' +
+    (
+      error &&
+      error.message
+        ? error.message
+        : String(error)
+    )
+  );
+
+
+  /*
+   * 特別提示 LIFF 初始化錯誤
+   */
+
+  console.log(
+    'LIFF ID:',
+    CONFIG.LIFF_ID
+  );
+
+  console.log(
+    'Current URL:',
+    window.location.href
+  );
+
+}
+
+
+/* ==================================================
+   41. Button Loading
+   ================================================== */
+
+function setButtonLoading(
+  button,
+  loading,
+  text
+) {
+
+  if (!button) {
+
+    return;
+
+  }
+
+
+  if (
+    loading
+  ) {
+
+    button.dataset.originalText =
+      button.textContent;
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      text ||
+      '處理中……';
+
+  } else {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      text ||
+      button.dataset.originalText ||
+      '確認';
+
+  }
+
+}
+
+
+/* ==================================================
+   42. HTML Escape
+   ================================================== */
 
 function escapeHtml(
   value
 ) {
 
+  if (
+    value === null ||
+    value === undefined
+  ) {
+
+    return '';
+
+  }
+
+
   return String(
-    value ?? ''
+    value
   )
     .replace(
       /&/g,
@@ -3412,6 +3773,41 @@ function escapeHtml(
 }
 
 
+/* ==================================================
+   43. JavaScript Escape
+   ================================================== */
+
+function escapeJs(
+  value
+) {
+
+  return String(
+    value || ''
+  )
+    .replace(
+      /\\/g,
+      '\\\\'
+    )
+    .replace(
+      /'/g,
+      "\\'"
+    )
+    .replace(
+      /\n/g,
+      '\\n'
+    )
+    .replace(
+      /\r/g,
+      '\\r'
+    );
+
+}
+
+
+/* ==================================================
+   44. Attribute Escape
+   ================================================== */
+
 function escapeAttr(
   value
 ) {
@@ -3421,6 +3817,11 @@ function escapeAttr(
   );
 
 }
+
+
+/* ==================================================
+   END
+   ================================================== */
 
 </script>
 
